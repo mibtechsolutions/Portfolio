@@ -18,16 +18,31 @@ const Footer = () => {
               Transforming businesses with futuristic AI automation and enterprise solutions.
             </p>
             <div className="flex gap-4">
-              {[MessageSquare, Globe, Mail].map((Icon, index) => (
-                <motion.a
-                  key={index}
-                  href="#"
-                  whileHover={{ scale: 1.2, y: -3 }}
-                  className="w-10 h-10 rounded-full border border-gold-500/30 flex items-center justify-center text-gold-500 hover:bg-gold-500/20 transition-colors"
-                >
-                  <Icon size={18} />
-                </motion.a>
-              ))}
+              <motion.a
+                href="https://wa.me/919600631764"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.2, y: -3 }}
+                className="w-10 h-10 rounded-full border border-gold-500/30 flex items-center justify-center text-gold-500 hover:bg-gold-500/20 transition-colors"
+              >
+                <MessageSquare size={18} />
+              </motion.a>
+              <motion.a
+                href="https://github.com/mibtechsolutions"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.2, y: -3 }}
+                className="w-10 h-10 rounded-full border border-gold-500/30 flex items-center justify-center text-gold-500 hover:bg-gold-500/20 transition-colors"
+              >
+                <Globe size={18} />
+              </motion.a>
+              <motion.a
+                href="mailto:mibtechsolutions@gmail.com"
+                whileHover={{ scale: 1.2, y: -3 }}
+                className="w-10 h-10 rounded-full border border-gold-500/30 flex items-center justify-center text-gold-500 hover:bg-gold-500/20 transition-colors"
+              >
+                <Mail size={18} />
+              </motion.a>
             </div>
           </motion.div>
 
@@ -81,11 +96,15 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="text-gold-500 flex-shrink-0" size={18} />
-                <span className="text-gray-400">mibtechsolutions@gmail.com</span>
+                <a href="mailto:mibtechsolutions@gmail.com" className="text-gray-400 hover:text-gold-500 transition-colors">
+                  mibtechsolutions@gmail.com
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="text-gold-500 flex-shrink-0" size={18} />
-                <span className="text-gray-400">+91 9600631764</span>
+                <a href="tel:+919600631764" className="text-gray-400 hover:text-gold-500 transition-colors">
+                  +91 9600631764
+                </a>
               </li>
             </ul>
           </motion.div>

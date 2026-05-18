@@ -72,7 +72,12 @@ const Contact = () => {
                 Ready to transform your business? Get in touch with our team and let's discuss your project.
               </p>
               <div className="space-y-4">
-                <div className="flex items-center gap-4 glassmorphism rounded-lg p-4 border-gold">
+                <a
+                  href="https://wa.me/919600631764"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 glassmorphism rounded-lg p-4 border-gold hover:border-gold-500 transition-colors"
+                >
                   <div className="w-12 h-12 rounded-lg bg-gold-gradient/20 flex items-center justify-center">
                     <MessageSquare className="text-gold-500" size={24} />
                   </div>
@@ -80,8 +85,11 @@ const Contact = () => {
                     <div className="text-sm text-gray-400">WhatsApp</div>
                     <div className="font-semibold">+91 9600631764</div>
                   </div>
-                </div>
-                <div className="flex items-center gap-4 glassmorphism rounded-lg p-4 border-gold">
+                </a>
+                <a
+                  href="mailto:mibtechsolutions@gmail.com"
+                  className="flex items-center gap-4 glassmorphism rounded-lg p-4 border-gold hover:border-gold-500 transition-colors"
+                >
                   <div className="w-12 h-12 rounded-lg bg-gold-gradient/20 flex items-center justify-center">
                     <Mail className="text-gold-500" size={24} />
                   </div>
@@ -89,7 +97,7 @@ const Contact = () => {
                     <div className="text-sm text-gray-400">Email</div>
                     <div className="font-semibold">mibtechsolutions@gmail.com</div>
                   </div>
-                </div>
+                </a>
               </div>
             </motion.div>
 
