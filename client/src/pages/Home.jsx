@@ -262,10 +262,6 @@ const Home = () => {
                   <div className="text-gray-400 text-sm uppercase tracking-wider">Efficiency Increase</div>
                 </div>
               </div>
-              
-              <MagneticButton className="mt-4 px-8 py-3 border border-gold-500 text-gold-500 font-medium rounded-lg hover:bg-gold-500/10">
-                Our Full Story
-              </MagneticButton>
             </EnhancedSection>
           </div>
         </div>

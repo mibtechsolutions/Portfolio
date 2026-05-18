@@ -270,7 +270,7 @@ const Portfolio = () => {
                 We helped a Fortune 500 company transform their operations with AI automation,
                 resulting in unprecedented efficiency gains and cost savings.
               </p>
-              <div className="grid grid-cols-3 gap-4 mb-8">
+              <div className="grid grid-cols-3 gap-4">
                 <div className="text-center p-4 glassmorphism rounded-lg border-gold">
                   <div className="text-3xl font-bold text-gold-500">400%</div>
                   <div className="text-gray-400 text-sm">ROI Increase</div>
@@ -284,13 +284,6 @@ const Portfolio = () => {
                   <div className="text-gray-400 text-sm">Operations</div>
                 </div>
               </div>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 bg-gold-gradient text-black font-bold rounded-lg gold-glow"
-              >
-                Read Full Case Study
-              </motion.button>
             </motion.div>
           </div>
         </div>
