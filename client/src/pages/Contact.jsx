@@ -59,7 +59,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <div className="text-sm text-gray-400">WhatsApp</div>
-                    <div className="font-semibold">+1 (555) 123-4567</div>
+                    <div className="font-semibold">+91 9600631764</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 glassmorphism rounded-lg p-4 border-gold">
@@ -68,7 +68,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <div className="text-sm text-gray-400">Email</div>
-                    <div className="font-semibold">contact@mibtech.com</div>
+                    <div className="font-semibold">mibtechsolutions@gmail.com</div>
                   </div>
                 </div>
               </div>
@@ -110,7 +110,7 @@ const Contact = () => {
                   </div>
                   <h3 className="text-xl font-bold">Office</h3>
                 </div>
-                <p className="text-gray-400">123 Tech Park, Innovation City<br />San Francisco, CA 94105<br />United States</p>
+                <p className="text-gray-400">MIB Tech solutions, Nivedh Vikas Apartment<br />27/9, Pankaja Mills Rd, Puliakulam<br />Coimbatore, Tamil Nadu 641045</p>
               </motion.div>
 
               <motion.div
@@ -126,7 +126,7 @@ const Contact = () => {
                   </div>
                   <h3 className="text-xl font-bold">Hours</h3>
                 </div>
-                <p className="text-gray-400">Monday - Friday: 9:00 AM - 6:00 PM<br />Saturday: 10:00 AM - 4:00 PM<br />Support: 24/7 Available</p>
+                <p className="text-gray-400">Monday - Friday: 9:30 AM - 6:30 PM<br />Saturday: Every 2nd Saturday<br />Support: 24/7 Available</p>
               </motion.div>
 
               <motion.div

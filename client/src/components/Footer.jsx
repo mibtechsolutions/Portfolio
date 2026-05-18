@@ -77,15 +77,15 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="text-gold-500 mt-1 flex-shrink-0" size={18} />
-                <span className="text-gray-400">123 Tech Park, Innovation City</span>
+                <span className="text-gray-400">MIB Tech solutions, Nivedh Vikas Apartment, 27/9, Pankaja Mills Rd, Puliakulam, Coimbatore, Tamil Nadu 641045</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="text-gold-500 flex-shrink-0" size={18} />
-                <span className="text-gray-400">contact@mibtech.com</span>
+                <span className="text-gray-400">mibtechsolutions@gmail.com</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="text-gold-500 flex-shrink-0" size={18} />
-                <span className="text-gray-400">+1 (555) 123-4567</span>
+                <span className="text-gray-400">+91 9600631764</span>
               </li>
             </ul>
           </motion.div>

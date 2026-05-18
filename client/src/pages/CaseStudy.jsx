@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, CheckCircle, TrendingUp, Brain, Zap, MessageSquare, Target, BarChart3, Shield, Globe, Database, Code, Cloud, Users, Award, Layers, Smartphone, ShoppingBag, ChevronRight, Building, Factory, GraduationCap } from 'lucide-react';
+import { ArrowLeft, CheckCircle, TrendingUp, Brain, Zap, MessageSquare, Target, BarChart3, Shield, Globe, Database, Users, Award, ShoppingBag, Building, Factory, GraduationCap } from 'lucide-react';
 import {
   EnhancedSection,
   TiltCard,
@@ -845,19 +845,16 @@ const CaseStudy = () => {
                               initial={{ scale: 0, opacity: 0 }}
                               whileInView={{ scale: 1, opacity: 1 }}
                               viewport={{ once: true }}
-                              transition={{ 
-                                delay: 0.5 + i * 0.15,
-                                type: "spring",
-                                stiffness: 200
-                              }}
                               animate={{
                                 scale: [1, 1.3, 1],
                                 opacity: [0.7, 1, 0.7],
                               }}
                               transition={{
+                                delay: 0.5 + i * 0.15,
+                                type: "spring",
+                                stiffness: 200,
                                 duration: 2,
                                 repeat: Infinity,
-                                delay: i * 0.2,
                                 ease: "easeInOut"
                               }}
                             />
@@ -1004,12 +1001,6 @@ const CaseStudy = () => {
                         initial={{ height: 0 }}
                         whileInView={{ height: `${height}%` }}
                         viewport={{ once: true }}
-                        transition={{ 
-                          delay: 0.5 + i * 0.15,
-                          type: "spring",
-                          stiffness: 100,
-                          damping: 15
-                        }}
                         animate={{
                           height: [
                             `${height}%`,
@@ -1017,10 +1008,13 @@ const CaseStudy = () => {
                             `${height}%`
                           ]
                         }}
-                        transition={{
+                        transition={{ 
+                          delay: 0.5 + i * 0.15,
+                          type: "spring",
+                          stiffness: 100,
+                          damping: 15,
                           duration: 2,
                           repeat: Infinity,
-                          delay: i * 0.3,
                           ease: "easeInOut"
                         }}
                       >

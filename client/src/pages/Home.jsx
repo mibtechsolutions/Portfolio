@@ -86,11 +86,10 @@ const Home = () => {
             </EnhancedSection>
 
             <EnhancedSection direction="left" className="relative" delay={0.4}>
-              <div className="absolute -inset-10 bg-gold-500/25 blur-3xl rounded-full"></div>
               <TiltCard className="relative">
                 <img
-                  src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&h=800&fit=crop"
-                  alt="AI Neural Network"
+                  src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=futuristic%20AI%20neural%20network%20visualization%2C%20gold%20and%20neon%20lines%2C%20dark%20black%20background%2C%20digital%20enterprise%20dashboard&image_size=square_hd"
+                  alt="AI Automation & Portfolio Services"
                   className="rounded-2xl w-full h-auto"
                   style={{
                     filter: 'drop-shadow(0 0 35px rgba(212, 175, 55, 0.6)) drop-shadow(0 0 70px rgba(212, 175, 55, 0.3))',
@@ -188,13 +187,59 @@ const Home = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <EnhancedSection direction="left" delay={0.2}>
-              <div className="relative">
-                <div className="absolute inset-0 bg-gold-500/15 blur-3xl rounded-3xl"></div>
-                <img
-                  src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=800&fit=crop"
-                  alt="Digital Transformation"
-                  className="relative rounded-2xl w-full"
-                />
+              <div className="relative glassmorphism rounded-2xl p-8 border-gold">
+                <div className="absolute top-0 left-0 w-40 h-40 bg-gold-gradient/20 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 right-0 w-32 h-32 bg-gold-500/15 rounded-full blur-2xl"></div>
+                
+                <div className="relative z-10 space-y-6">
+                  <div className="space-y-4">
+                    {[
+                      { label: 'AI Automation', percent: 95 },
+                      { label: 'Process Efficiency', percent: 88 },
+                      { label: 'Customer Satisfaction', percent: 92 },
+                      { label: 'Cost Savings', percent: 85 },
+                    ].map((item, i) => (
+                      <div key={i}>
+                        <div className="flex justify-between mb-1">
+                          <span className="text-sm font-medium">{item.label}</span>
+                          <span className="text-sm text-gold-500 font-bold">{item.percent}%</span>
+                        </div>
+                        <div className="w-full bg-gray-800 rounded-full h-2">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${item.percent}%` }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1, delay: 0.3 + i * 0.15 }}
+                            className="bg-gold-gradient h-2 rounded-full"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-4 pt-2">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.8 }}
+                      className="text-center glassmorphism p-4 rounded-xl border-gold"
+                    >
+                      <div className="text-3xl font-bold text-gold-gradient">500+</div>
+                      <div className="text-xs text-gray-400 uppercase tracking-wider">Projects</div>
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.9 }}
+                      className="text-center glassmorphism p-4 rounded-xl border-gold"
+                    >
+                      <div className="text-3xl font-bold text-gold-gradient">200+</div>
+                      <div className="text-xs text-gray-400 uppercase tracking-wider">Clients</div>
+                    </motion.div>
+                  </div>
+                </div>
               </div>
             </EnhancedSection>
             
