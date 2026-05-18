@@ -88,7 +88,7 @@ const Home = () => {
             <EnhancedSection direction="left" className="relative" delay={0.4}>
               <TiltCard className="relative">
                 <img
-                  src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=futuristic%20AI%20neural%20network%20visualization%2C%20gold%20and%20neon%20lines%2C%20dark%20black%20background%2C%20digital%20enterprise%20dashboard&image_size=square_hd"
+                  src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=modern%20AI%20robot%20interface%2C%20gold%20accent%20lights%2C%20dark%20black%20background%2C%20futuristic%20technology%2C%20digital%20art&image_size=square_hd"
                   alt="AI Automation & Portfolio Services"
                   className="rounded-2xl w-full h-auto"
                   style={{
