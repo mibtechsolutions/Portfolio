@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Check, Zap, Cpu, MessageSquare, Globe, Database, Code, BarChart3, Brain, TrendingUp } from 'lucide-react';
+import { ArrowRight, Check, Zap, Cpu, MessageSquare, Globe, Database, Code, BarChart3, Brain, TrendingUp, Loader2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import {
   TextReveal,
   MagneticButton,
@@ -9,7 +10,13 @@ import {
   EnhancedSection,
 } from '../components/animations';
 
+const API_BASE_URL = 'http://localhost:3001/api';
+
 const Home = () => {
+  const [testimonials, setTestimonials] = useState([]);
+  const [loadingTestimonials, setLoadingTestimonials] = useState(true);
+  const [testimonialsError, setTestimonialsError] = useState(null);
+
   const stats = [
     { number: 500, label: 'Projects Delivered', suffix: '+' },
     { number: 200, label: 'Happy Clients', suffix: '+' },
@@ -37,11 +44,28 @@ const Home = () => {
     { step: '04', title: 'Launch', desc: 'Deploy and optimize for success' },
   ];
 
-  const testimonials = [
-    { name: 'John Smith', company: 'CEO, TechCorp', text: 'MiB Tech transformed our operations with their AI automation. Game changer!' },
-    { name: 'Sarah Johnson', company: 'Founder, StartupX', text: 'Outstanding service and innovative solutions. Highly recommend!' },
-    { name: 'Michael Chen', company: 'CTO, Enterprise Inc', text: 'Professional team and exceptional results. Our business grew by 300%.' },
-  ];
+  useEffect(() => {
+    fetchTestimonials();
+  }, []);
+
+  const fetchTestimonials = async () => {
+    try {
+      setLoadingTestimonials(true);
+      const response = await fetch(`${API_BASE_URL}/testimonials`);
+      const result = await response.json();
+      
+      if (result.success) {
+        setTestimonials(result.data);
+      } else {
+        setTestimonialsError(result.message);
+      }
+    } catch (err) {
+      console.error('Error fetching testimonials:', err);
+      setTestimonialsError('Failed to load testimonials');
+    } finally {
+      setLoadingTestimonials(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-black">
@@ -277,22 +301,49 @@ const Home = () => {
           </EnhancedSection>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <EnhancedSection key={index} delay={index * 0.15} type="slide" direction={index % 3 === 0 ? 'left' : index % 3 === 1 ? 'up' : 'right'}>
-                <TiltCard className="glassmorphism rounded-xl p-8 border-gold">
-                  <div className="flex gap-1 mb-4">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <span key={star} className="text-gold-500">★</span>
-                    ))}
-                  </div>
-                  <p className="text-gray-300 mb-6 italic">"{testimonial.text}"</p>
-                  <div>
-                    <div className="font-bold">{testimonial.name}</div>
-                    <div className="text-gold-500 text-sm">{testimonial.company}</div>
-                  </div>
-                </TiltCard>
-              </EnhancedSection>
-            ))}
+            {loadingTestimonials ? (
+              <div className="col-span-3 flex items-center justify-center py-20">
+                <Loader2 className="w-12 h-12 text-gold-500 animate-spin" />
+                <span className="ml-4 text-xl text-gray-400">Loading testimonials...</span>
+              </div>
+            ) : testimonialsError ? (
+              <div className="col-span-3 text-center py-20 glassmorphism rounded-xl p-12 border-gold">
+                <h3 className="text-2xl font-bold mb-4 text-red-500">Error Loading Testimonials</h3>
+                <p className="text-gray-400 mb-6">{testimonialsError}</p>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={fetchTestimonials}
+                  className="px-6 py-3 bg-gold-gradient text-black font-bold rounded-lg gold-glow"
+                >
+                  Try Again
+                </motion.button>
+              </div>
+            ) : testimonials.length === 0 ? (
+              <div className="col-span-3 text-center py-20 glassmorphism rounded-xl p-12 border-gold">
+                <h3 className="text-2xl font-bold mb-4 text-gold-500">No Testimonials Yet</h3>
+                <p className="text-gray-400">Add testimonials to your Supabase database to see them here!</p>
+              </div>
+            ) : (
+              testimonials.map((testimonial, index) => (
+                <EnhancedSection key={testimonial.id || index} delay={index * 0.15} type="slide" direction={index % 3 === 0 ? 'left' : index % 3 === 1 ? 'up' : 'right'}>
+                  <TiltCard className="glassmorphism rounded-xl p-8 border-gold">
+                    <div className="flex gap-1 mb-4">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <span key={star} className="text-gold-500">★</span>
+                      ))}
+                    </div>
+                    <p className="text-gray-300 mb-6 italic">"{testimonial.text}"</p>
+                    <div>
+                      <div className="font-bold">{testimonial.name}</div>
+                      {testimonial.company && (
+                        <div className="text-gold-500 text-sm">{testimonial.company}</div>
+                      )}
+                    </div>
+                  </TiltCard>
+                </EnhancedSection>
+              ))
+            )}
           </div>
         </div>
       </EnhancedSection>
