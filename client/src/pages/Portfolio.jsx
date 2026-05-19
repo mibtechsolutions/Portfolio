@@ -6,6 +6,7 @@ import {
   EnhancedSection,
   TiltCard,
 } from '../components/animations';
+import { AnimatedBackground, GradientBlob, GridLines } from '../components/AnimatedBackground';
 
 const API_BASE_URL = 'http://localhost:3001/api';
 
@@ -54,8 +55,10 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen bg-black">
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-7xl mx-auto">
+      <section className="pt-32 pb-20 px-6 relative overflow-hidden">
+        <AnimatedBackground type="particles" color="gold" density="medium" />
+        <GradientBlob />
+        <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

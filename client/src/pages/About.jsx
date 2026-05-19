@@ -5,6 +5,7 @@ import {
   TiltCard,
   MagneticButton,
 } from '../components/animations';
+import { AnimatedBackground, GradientBlob, GridLines } from '../components/AnimatedBackground';
 
 const About = () => {
   const expertise = [
@@ -31,8 +32,10 @@ const About = () => {
   return (
     <div className="min-h-screen bg-black">
       {/* Hero Section */}
-      <EnhancedSection className="pt-32 pb-20 px-6" type="scale" delay={0.1}>
-        <div className="max-w-7xl mx-auto">
+      <EnhancedSection className="pt-32 pb-20 px-6 relative overflow-hidden" type="scale" delay={0.1}>
+        <AnimatedBackground type="particles" color="gold" density="medium" />
+        <GradientBlob />
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <EnhancedSection direction="right" className="space-y-6" delay={0.2}>
               <motion.div
