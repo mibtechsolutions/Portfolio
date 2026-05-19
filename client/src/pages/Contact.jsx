@@ -26,30 +26,11 @@ const Contact = () => {
     { question: 'Can you sign an NDA?', answer: 'Yes, we are happy to sign a Non-Disclosure Agreement to protect your confidential information.' }
   ];
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch('http://localhost:3001/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-      
-      if (result.success) {
-        setSubmitted(true);
-        setTimeout(() => setSubmitted(false), 5000);
-        setFormData({ name: '', email: '', phone: '', company: '', message: '' });
-      } else {
-        alert('Failed to submit form. Please try again.');
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('Error submitting form. Please check if the server is running.');
-    }
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 3000);
+    setFormData({ name: '', email: '', phone: '', company: '', message: '' });
   };
 
   return (
@@ -72,12 +53,7 @@ const Contact = () => {
                 Ready to transform your business? Get in touch with our team and let's discuss your project.
               </p>
               <div className="space-y-4">
-                <a
-                  href="https://wa.me/919600631764"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 glassmorphism rounded-lg p-4 border-gold hover:border-gold-500 transition-colors"
-                >
+                <div className="flex items-center gap-4 glassmorphism rounded-lg p-4 border-gold">
                   <div className="w-12 h-12 rounded-lg bg-gold-gradient/20 flex items-center justify-center">
                     <MessageSquare className="text-gold-500" size={24} />
                   </div>
@@ -85,11 +61,8 @@ const Contact = () => {
                     <div className="text-sm text-gray-400">WhatsApp</div>
                     <div className="font-semibold">+91 9600631764</div>
                   </div>
-                </a>
-                <a
-                  href="mailto:mibtechsolutions@gmail.com"
-                  className="flex items-center gap-4 glassmorphism rounded-lg p-4 border-gold hover:border-gold-500 transition-colors"
-                >
+                </div>
+                <div className="flex items-center gap-4 glassmorphism rounded-lg p-4 border-gold">
                   <div className="w-12 h-12 rounded-lg bg-gold-gradient/20 flex items-center justify-center">
                     <Mail className="text-gold-500" size={24} />
                   </div>
@@ -97,7 +70,7 @@ const Contact = () => {
                     <div className="text-sm text-gray-400">Email</div>
                     <div className="font-semibold">mibtechsolutions@gmail.com</div>
                   </div>
-                </a>
+                </div>
               </div>
             </motion.div>
 

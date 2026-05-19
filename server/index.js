@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
-const ws = require('ws');
 const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
@@ -13,11 +12,7 @@ app.use(express.json());
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-  realtime: {
-    transport: ws
-  }
-});
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -43,63 +38,43 @@ app.post('/api/contact', async (req, res) => {
   try {
     const { name, email, phone, company, message } = req.body;
     
-    console.log('📨 Receiving contact form submission:', { name, email, phone, company, message: message.substring(0, 50) + '...' });
-    
-    let dbData = null;
-    let emailSent = false;
-    
-    try {
-      const { data, error } = await supabase
-        .from('contact_submissions')
-        .insert([
-          { name, email, phone, company, message }
-        ])
-        .select();
+    const { data, error } = await supabase
+      .from('contact_submissions')
+      .insert([
+        { name, email, phone, company, message }
+      ])
+      .select();
 
-      if (error) {
-        console.error('❌ Supabase insert error:', error);
-      } else {
-        dbData = data;
-        console.log('✅ Data saved to Supabase:', dbData);
-      }
-    } catch (dbError) {
-      console.error('❌ Database error:', dbError);
+    if (error) {
+      throw error;
     }
-    
-    try {
-      const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: process.env.RECIPIENT_EMAIL,
-        subject: `New Contact Form Submission from ${name}`,
-        html: `
-          <h2 style="color: #D4AF37;">New Contact Form Submission</h2>
-          <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; color: #ffffff;">
-            <p><strong style="color: #D4AF37;">Name:</strong> ${name}</p>
-            <p><strong style="color: #D4AF37;">Email:</strong> ${email}</p>
-            ${phone ? `<p><strong style="color: #D4AF37;">Phone:</strong> ${phone}</p>` : ''}
-            ${company ? `<p><strong style="color: #D4AF37;">Company:</strong> ${company}</p>` : ''}
-            <p><strong style="color: #D4AF37;">Message:</strong></p>
-            <p style="background: #2a2a2a; padding: 15px; border-radius: 4px;">${message}</p>
-          </div>
-        `
-      };
 
-      await transporter.sendMail(mailOptions);
-      emailSent = true;
-      console.log('✅ Email sent successfully!');
-    } catch (emailError) {
-      console.error('❌ Email sending error:', emailError.message);
-      console.log('💡 Tip: Make sure you set up a Gmail App Password and update your .env file!');
-    }
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: process.env.RECIPIENT_EMAIL,
+      subject: `New Contact Form Submission from ${name}`,
+      html: `
+        <h2 style="color: #D4AF37;">New Contact Form Submission</h2>
+        <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; color: #ffffff;">
+          <p><strong style="color: #D4AF37;">Name:</strong> ${name}</p>
+          <p><strong style="color: #D4AF37;">Email:</strong> ${email}</p>
+          ${phone ? `<p><strong style="color: #D4AF37;">Phone:</strong> ${phone}</p>` : ''}
+          ${company ? `<p><strong style="color: #D4AF37;">Company:</strong> ${company}</p>` : ''}
+          <p><strong style="color: #D4AF37;">Message:</strong></p>
+          <p style="background: #2a2a2a; padding: 15px; border-radius: 4px;">${message}</p>
+        </div>
+      `
+    };
+
+    await transporter.sendMail(mailOptions);
 
     res.status(201).json({
       success: true,
       message: 'Contact form submitted successfully!',
-      data: dbData,
-      emailSent
+      data
     });
   } catch (error) {
-    console.error('❌ General error submitting contact form:', error);
+    console.error('Error submitting contact form:', error);
     res.status(500).json({
       success: false,
       message: 'Failed to submit contact form',

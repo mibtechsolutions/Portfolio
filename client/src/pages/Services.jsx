@@ -76,34 +76,12 @@ const Services = () => {
 
             <EnhancedSection direction="left" className="relative" delay={0.3}>
               <div className="absolute inset-0 bg-gold-500/20 blur-3xl rounded-full"></div>
-              <div className="relative glassmorphism rounded-2xl border-gold p-6">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gold-gradient/20 rounded-full blur-2xl"></div>
-                
-                <div className="relative z-10 space-y-4">
-                  {[
-                    { icon: Brain, label: 'AI', value: '100%' },
-                    { icon: Zap, label: 'Speed', value: 'Fast' },
-                    { icon: Shield, label: 'Security', value: 'Top' },
-                    { icon: Layers, label: 'Scalable', value: 'Yes' },
-                  ].map((item, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: 20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.4 + i * 0.1 }}
-                      className="flex items-center gap-4 glassmorphism p-4 rounded-xl border-gold"
-                    >
-                      <div className="w-12 h-12 rounded-lg bg-gold-gradient/20 flex items-center justify-center flex-shrink-0">
-                        <item.icon size={24} className="text-gold-500" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-bold">{item.label}</div>
-                        <div className="text-gold-500 text-sm">{item.value}</div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
+              <div className="relative glassmorphism rounded-2xl border-gold p-2">
+                <img
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop"
+                  alt="AI Solutions"
+                  className="rounded-xl w-full"
+                />
               </div>
             </EnhancedSection>
           </div>
@@ -162,49 +140,13 @@ const Services = () => {
             </EnhancedSection>
 
             <EnhancedSection direction="right" delay={0.3}>
-              <div className="relative glassmorphism rounded-2xl p-8 border-gold">
-                <div className="absolute -top-10 -right-10 w-40 h-40 bg-gold-gradient/20 rounded-full blur-3xl"></div>
-                <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-gold-500/15 rounded-full blur-2xl"></div>
-                
-                <div className="relative z-10">
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    {[
-                      { icon: Brain, title: 'Machine Learning' },
-                      { icon: Database, title: 'Data Processing' },
-                      { icon: Cloud, title: 'Cloud Integration' },
-                      { icon: Code, title: 'API Development' },
-                    ].map((item, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 + i * 0.1 }}
-                        className="text-center glassmorphism p-4 rounded-xl border-gold"
-                      >
-                        <item.icon size={28} className="text-gold-500 mx-auto mb-2" />
-                        <div className="text-sm font-medium">{item.title}</div>
-                      </motion.div>
-                    ))}
-                  </div>
-                  
-                  <div className="relative h-24">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      {[...Array(5)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          animate={{ y: [0, -10, 0] }}
-                          transition={{ duration: 1, repeat: Infinity, delay: i * 0.15 }}
-                          className="w-2 h-8 bg-gold-gradient rounded-full mx-1"
-                          style={{ opacity: 0.5 + i * 0.1 }}
-                        />
-                      ))}
-                    </div>
-                    <div className="absolute bottom-0 left-0 right-0 text-center text-gold-500 text-sm font-medium">
-                      Processing Data...
-                    </div>
-                  </div>
-                </div>
+              <div className="relative">
+                <div className="absolute inset-0 bg-gold-500/15 blur-3xl rounded-3xl"></div>
+                <img
+                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=800&fit=crop"
+                  alt="AI Automation"
+                  className="relative rounded-2xl w-full"
+                />
               </div>
             </EnhancedSection>
           </div>
