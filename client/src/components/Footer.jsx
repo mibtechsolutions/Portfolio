@@ -1,11 +1,14 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Globe, MessageSquare, ArrowRight } from 'lucide-react';
+import { AnimatedBackground, GradientBlob } from './AnimatedBackground';
 
 const Footer = () => {
   return (
-    <footer className="border-t border-gold-500/20 bg-black">
-      <div className="max-w-7xl mx-auto px-6 py-16">
+    <footer className="border-t border-gold-500/20 bg-black relative overflow-hidden">
+      <AnimatedBackground type="particles" color="gold" density="low" />
+      <GradientBlob className="opacity-50" />
+      <div className="max-w-7xl mx-auto px-6 py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

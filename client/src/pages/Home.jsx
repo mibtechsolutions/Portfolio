@@ -9,6 +9,7 @@ import {
   AnimatedCounter,
   EnhancedSection,
 } from '../components/animations';
+import { AnimatedBackground, GradientBlob, GridLines } from '../components/AnimatedBackground';
 
 const API_BASE_URL = 'http://localhost:3001/api';
 
@@ -70,8 +71,10 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-black">
       {/* Hero Section */}
-      <EnhancedSection className="relative pt-32 pb-20 px-6" type="scale" delay={0.1}>
-        <div className="max-w-7xl mx-auto">
+      <EnhancedSection className="relative pt-32 pb-20 px-6 overflow-hidden" type="scale" delay={0.1}>
+        <AnimatedBackground type="particles" color="gold" density="medium" />
+        <GradientBlob />
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <EnhancedSection direction="right" className="space-y-6" delay={0.2}>
               <motion.div
@@ -126,8 +129,9 @@ const Home = () => {
       </EnhancedSection>
 
       {/* Stats Section */}
-      <EnhancedSection className="py-20 px-6 border-y border-gold-500/10" type="scale" delay={0.1}>
-        <div className="max-w-7xl mx-auto">
+      <EnhancedSection className="py-20 px-6 border-y border-gold-500/10 relative overflow-hidden" type="scale" delay={0.1}>
+        <GridLines />
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <EnhancedSection key={index} delay={index * 0.15} className="text-center" type="slide" direction="up">
@@ -142,8 +146,9 @@ const Home = () => {
       </EnhancedSection>
 
       {/* Services Section */}
-      <EnhancedSection className="py-20 px-6" type="fade" delay={0.1}>
-        <div className="max-w-7xl mx-auto">
+      <EnhancedSection className="py-20 px-6 relative overflow-hidden" type="fade" delay={0.1}>
+        <AnimatedBackground type="particles" color="gold" density="low" />
+        <div className="max-w-7xl mx-auto relative z-10">
           <EnhancedSection className="text-center mb-16" type="scale" delay={0.2}>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Our <span className="text-gold-gradient">Services</span>
@@ -175,8 +180,9 @@ const Home = () => {
       </EnhancedSection>
 
       {/* Process Section */}
-      <EnhancedSection className="py-20 px-6 bg-gradient-to-b from-transparent via-gold-500/5 to-transparent" type="fade" delay={0.1}>
-        <div className="max-w-7xl mx-auto">
+      <EnhancedSection className="py-20 px-6 bg-gradient-to-b from-transparent via-gold-500/5 to-transparent relative overflow-hidden" type="fade" delay={0.1}>
+        <GradientBlob className="opacity-30" />
+        <div className="max-w-7xl mx-auto relative z-10">
           <EnhancedSection className="text-center mb-16" type="scale" delay={0.2}>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Our <span className="text-gold-gradient">Process</span>
@@ -207,8 +213,9 @@ const Home = () => {
       </EnhancedSection>
 
       {/* Driving Digital Transformation Section */}
-      <EnhancedSection className="py-20 px-6 bg-gradient-to-b from-transparent via-gold-500/5 to-transparent" type="fade" delay={0.1}>
-        <div className="max-w-7xl mx-auto">
+      <EnhancedSection className="py-20 px-6 bg-gradient-to-b from-transparent via-gold-500/5 to-transparent relative overflow-hidden" type="fade" delay={0.1}>
+        <AnimatedBackground type="particles" color="gold" density="low" />
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <EnhancedSection direction="left" delay={0.2}>
               <div className="relative glassmorphism rounded-2xl p-8 border-gold">
@@ -292,8 +299,9 @@ const Home = () => {
       </EnhancedSection>
 
       {/* Testimonials */}
-      <EnhancedSection className="py-20 px-6" type="fade" delay={0.1}>
-        <div className="max-w-7xl mx-auto">
+      <EnhancedSection className="py-20 px-6 relative overflow-hidden" type="fade" delay={0.1}>
+        <GradientBlob className="opacity-40" />
+        <div className="max-w-7xl mx-auto relative z-10">
           <EnhancedSection className="text-center mb-16" type="scale" delay={0.2}>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               What Our <span className="text-gold-gradient">Clients Say</span>
@@ -349,8 +357,10 @@ const Home = () => {
       </EnhancedSection>
 
       {/* CTA Section */}
-      <EnhancedSection className="py-20 px-6" type="scale" delay={0.2}>
-        <div className="max-w-5xl mx-auto">
+      <EnhancedSection className="py-20 px-6 relative overflow-hidden" type="scale" delay={0.2}>
+        <AnimatedBackground type="particles" color="gold" density="medium" />
+        <GradientBlob className="opacity-60" />
+        <div className="max-w-5xl mx-auto relative z-10">
           <div className="glassmorphism rounded-3xl p-12 border-gold text-center relative overflow-hidden">
             <div className="absolute inset-0 bg-gold-500/10 blur-3xl"></div>
             <div className="relative">
