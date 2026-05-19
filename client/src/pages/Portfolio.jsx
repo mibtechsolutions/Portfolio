@@ -76,8 +76,9 @@ const Portfolio = () => {
       </section>
 
       {/* Metrics */}
-      <section className="py-16 px-6 border-y border-gold-500/10">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-16 px-6 border-y border-gold-500/10 relative overflow-hidden">
+        <GridLines />
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {metrics.map((metric, index) => (
               <motion.div
@@ -97,8 +98,9 @@ const Portfolio = () => {
       </section>
 
       {/* Filter */}
-      <section className="py-16 px-6">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-16 px-6 relative overflow-hidden">
+        <AnimatedBackground type="particles" color="gold" density="low" />
+        <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -222,8 +224,10 @@ const Portfolio = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6">
-        <div className="max-w-5xl mx-auto">
+      <section className="py-20 px-6 relative overflow-hidden">
+        <AnimatedBackground type="particles" color="gold" density="medium" />
+        <GradientBlob className="opacity-60" />
+        <div className="max-w-5xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

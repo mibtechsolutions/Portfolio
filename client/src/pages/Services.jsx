@@ -92,8 +92,9 @@ const Services = () => {
       </EnhancedSection>
 
       {/* Our Core Capabilities */}
-      <EnhancedSection className="py-20 px-6" type="fade" delay={0.1}>
-        <div className="max-w-7xl mx-auto">
+      <EnhancedSection className="py-20 px-6 relative overflow-hidden" type="fade" delay={0.1}>
+        <AnimatedBackground type="particles" color="gold" density="low" />
+        <div className="max-w-7xl mx-auto relative z-10">
           <EnhancedSection className="text-center mb-12" type="scale" delay={0.2}>
             <h2 className="text-3xl md:text-4xl font-bold">
               Our Core <span className="text-gold-gradient">Capabilities</span>
@@ -117,8 +118,9 @@ const Services = () => {
       </EnhancedSection>
 
       {/* Featured Service - AI Automation Excellence */}
-      <EnhancedSection className="py-20 px-6 bg-gradient-to-b from-transparent via-gold-500/5 to-transparent" type="fade" delay={0.1}>
-        <div className="max-w-7xl mx-auto">
+      <EnhancedSection className="py-20 px-6 bg-gradient-to-b from-transparent via-gold-500/5 to-transparent relative overflow-hidden" type="fade" delay={0.1}>
+        <GradientBlob className="opacity-40" />
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <EnhancedSection direction="left" delay={0.2} className="space-y-6">
               <h2 className="text-3xl font-bold">
@@ -157,8 +159,9 @@ const Services = () => {
       </EnhancedSection>
 
       {/* Global Intelligence for Every Sector */}
-      <EnhancedSection className="py-20 px-6" type="fade" delay={0.1}>
-        <div className="max-w-7xl mx-auto">
+      <EnhancedSection className="py-20 px-6 relative overflow-hidden" type="fade" delay={0.1}>
+        <AnimatedBackground type="particles" color="gold" density="low" />
+        <div className="max-w-7xl mx-auto relative z-10">
           <EnhancedSection className="text-center mb-12" type="scale" delay={0.2}>
             <h2 className="text-3xl md:text-4xl font-bold">
               Global Intelligence for <span className="text-gold-gradient">Every Sector</span>
@@ -182,8 +185,9 @@ const Services = () => {
       </EnhancedSection>
 
       {/* Our Strategic Execution */}
-      <EnhancedSection className="py-20 px-6 bg-gradient-to-b from-transparent via-gold-500/5 to-transparent" type="fade" delay={0.1}>
-        <div className="max-w-7xl mx-auto">
+      <EnhancedSection className="py-20 px-6 bg-gradient-to-b from-transparent via-gold-500/5 to-transparent relative overflow-hidden" type="fade" delay={0.1}>
+        <GradientBlob className="opacity-30" />
+        <div className="max-w-7xl mx-auto relative z-10">
           <EnhancedSection className="text-center mb-12" type="scale" delay={0.2}>
             <h2 className="text-3xl md:text-4xl font-bold">
               Our <span className="text-gold-gradient">Strategic Execution</span>
@@ -210,8 +214,9 @@ const Services = () => {
       </EnhancedSection>
 
       {/* The Technical Edge */}
-      <EnhancedSection className="py-20 px-6" type="fade" delay={0.1}>
-        <div className="max-w-7xl mx-auto">
+      <EnhancedSection className="py-20 px-6 relative overflow-hidden" type="fade" delay={0.1}>
+        <GridLines />
+        <div className="max-w-7xl mx-auto relative z-10">
           <EnhancedSection className="text-center mb-12" type="scale" delay={0.2}>
             <h2 className="text-3xl md:text-4xl font-bold">
               The <span className="text-gold-gradient">Technical Edge</span>
@@ -234,8 +239,9 @@ const Services = () => {
       </EnhancedSection>
 
       {/* Trusted by Innovation Leaders */}
-      <EnhancedSection className="py-20 px-6 bg-gradient-to-b from-transparent via-gold-500/5 to-transparent" type="fade" delay={0.1}>
-        <div className="max-w-7xl mx-auto">
+      <EnhancedSection className="py-20 px-6 bg-gradient-to-b from-transparent via-gold-500/5 to-transparent relative overflow-hidden" type="fade" delay={0.1}>
+        <GradientBlob className="opacity-50" />
+        <div className="max-w-7xl mx-auto relative z-10">
           <EnhancedSection className="text-center mb-12" type="scale" delay={0.2}>
             <h2 className="text-3xl md:text-4xl font-bold">
               Trusted by <span className="text-gold-gradient">Innovation Leaders</span>
@@ -261,8 +267,9 @@ const Services = () => {
       </EnhancedSection>
 
       {/* FAQ Section */}
-      <EnhancedSection className="py-20 px-6" type="fade" delay={0.1}>
-        <div className="max-w-4xl mx-auto">
+      <EnhancedSection className="py-20 px-6 relative overflow-hidden" type="fade" delay={0.1}>
+        <AnimatedBackground type="particles" color="gold" density="low" />
+        <div className="max-w-4xl mx-auto relative z-10">
           <EnhancedSection className="text-center mb-12" type="scale" delay={0.2}>
             <h2 className="text-3xl md:text-4xl font-bold">
               Frequently Asked <span className="text-gold-gradient">Questions</span>
@@ -300,8 +307,10 @@ const Services = () => {
       </EnhancedSection>
 
       {/* CTA Section */}
-      <EnhancedSection className="py-20 px-6" type="scale" delay={0.2}>
-        <div className="max-w-5xl mx-auto">
+      <EnhancedSection className="py-20 px-6 relative overflow-hidden" type="scale" delay={0.2}>
+        <AnimatedBackground type="particles" color="gold" density="medium" />
+        <GradientBlob className="opacity-60" />
+        <div className="max-w-5xl mx-auto relative z-10">
           <div className="glassmorphism rounded-3xl p-12 border-gold text-center relative overflow-hidden">
             <div className="absolute inset-0 bg-gold-500/10 blur-3xl"></div>
             <div className="relative">

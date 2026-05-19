@@ -86,8 +86,9 @@ const About = () => {
       </EnhancedSection>
 
       {/* The MiB Edge Section */}
-      <EnhancedSection className="py-20 px-6" type="fade" delay={0.1}>
-        <div className="max-w-7xl mx-auto">
+      <EnhancedSection className="py-20 px-6 relative overflow-hidden" type="fade" delay={0.1}>
+        <AnimatedBackground type="particles" color="gold" density="low" />
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <EnhancedSection direction="left" delay={0.2}>
               <div className="relative">
@@ -136,8 +137,9 @@ const About = () => {
       </EnhancedSection>
 
       {/* Mission & Vision */}
-      <EnhancedSection className="py-20 px-6 bg-gradient-to-b from-transparent via-gold-500/5 to-transparent" type="fade" delay={0.1}>
-        <div className="max-w-7xl mx-auto">
+      <EnhancedSection className="py-20 px-6 bg-gradient-to-b from-transparent via-gold-500/5 to-transparent relative overflow-hidden" type="fade" delay={0.1}>
+        <GradientBlob className="opacity-30" />
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-8">
             <EnhancedSection direction="left" delay={0.2} type="slide">
               <div className="glassmorphism rounded-xl p-8 border-gold h-full">
@@ -163,8 +165,9 @@ const About = () => {
       </EnhancedSection>
 
       {/* Expertise Section */}
-      <EnhancedSection className="py-20 px-6" type="fade" delay={0.1}>
-        <div className="max-w-7xl mx-auto">
+      <EnhancedSection className="py-20 px-6 relative overflow-hidden" type="fade" delay={0.1}>
+        <AnimatedBackground type="particles" color="gold" density="low" />
+        <div className="max-w-7xl mx-auto relative z-10">
           <EnhancedSection className="text-center mb-16" type="scale" delay={0.2}>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Why Businesses <span className="text-gold-gradient">Trust Us</span>
@@ -194,8 +197,9 @@ const About = () => {
       </EnhancedSection>
 
       {/* Team Section */}
-      <EnhancedSection className="py-20 px-6" type="fade" delay={0.1}>
-        <div className="max-w-7xl mx-auto">
+      <EnhancedSection className="py-20 px-6 relative overflow-hidden" type="fade" delay={0.1}>
+        <GradientBlob className="opacity-40" />
+        <div className="max-w-7xl mx-auto relative z-10">
           <EnhancedSection className="text-center mb-16" type="scale" delay={0.2}>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Meet Our <span className="text-gold-gradient">Experts</span>
@@ -232,8 +236,9 @@ const About = () => {
       </EnhancedSection>
 
       {/* Why Choose MiB? */}
-      <EnhancedSection className="py-20 px-6 bg-gradient-to-b from-transparent via-gold-500/5 to-transparent" type="fade" delay={0.1}>
-        <div className="max-w-7xl mx-auto">
+      <EnhancedSection className="py-20 px-6 bg-gradient-to-b from-transparent via-gold-500/5 to-transparent relative overflow-hidden" type="fade" delay={0.1}>
+        <AnimatedBackground type="particles" color="gold" density="low" />
+        <div className="max-w-7xl mx-auto relative z-10">
           <EnhancedSection className="text-center mb-16" type="scale" delay={0.2}>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Why Choose <span className="text-gold-gradient">MiB Tech?</span>
@@ -291,8 +296,10 @@ const About = () => {
       </EnhancedSection>
 
       {/* CTA Section */}
-      <EnhancedSection className="py-20 px-6" type="scale" delay={0.2}>
-        <div className="max-w-5xl mx-auto">
+      <EnhancedSection className="py-20 px-6 relative overflow-hidden" type="scale" delay={0.2}>
+        <AnimatedBackground type="particles" color="gold" density="medium" />
+        <GradientBlob className="opacity-60" />
+        <div className="max-w-5xl mx-auto relative z-10">
           <div className="glassmorphism rounded-3xl p-12 border-gold text-center relative overflow-hidden">
             <div className="absolute inset-0 bg-gold-500/10 blur-3xl"></div>
             <div className="relative">

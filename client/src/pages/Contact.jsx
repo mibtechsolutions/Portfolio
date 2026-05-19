@@ -96,8 +96,9 @@ const Contact = () => {
       </section>
 
       {/* Contact Form & Info */}
-      <section className="py-20 px-6">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-20 px-6 relative overflow-hidden">
+        <AnimatedBackground type="particles" color="gold" density="low" />
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-3 gap-8">
             <div className="lg:col-span-1 space-y-6">
               <motion.div
@@ -251,8 +252,9 @@ const Contact = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 px-6 bg-gradient-to-b from-transparent via-gold-500/5 to-transparent">
-        <div className="max-w-3xl mx-auto">
+      <section className="py-20 px-6 bg-gradient-to-b from-transparent via-gold-500/5 to-transparent relative overflow-hidden">
+        <GradientBlob className="opacity-40" />
+        <div className="max-w-3xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -296,8 +298,10 @@ const Contact = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6">
-        <div className="max-w-5xl mx-auto">
+      <section className="py-20 px-6 relative overflow-hidden">
+        <AnimatedBackground type="particles" color="gold" density="medium" />
+        <GradientBlob className="opacity-60" />
+        <div className="max-w-5xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
