@@ -12,7 +12,15 @@ app.use(express.json());
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const WebSocket = require('ws');
+const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  global: {
+    fetch: (...args) => fetch(...args),
+  },
+  realtime: {
+    transport: WebSocket,
+  }
+});
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -100,6 +108,37 @@ app.get('/api/projects', async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Failed to fetch projects',
+      error: error.message
+    });
+  }
+});
+
+app.get('/api/projects/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { data, error } = await supabase
+      .from('projects')
+      .select('*')
+      .eq('id', id)
+      .single();
+
+    if (error) {
+      throw error;
+    }
+
+    if (!data) {
+      return res.status(404).json({
+        success: false,
+        message: 'Project not found'
+      });
+    }
+
+    res.json({ success: true, data });
+  } catch (error) {
+    console.error('Error fetching project:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch project',
       error: error.message
     });
   }
