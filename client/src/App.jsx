@@ -9,10 +9,9 @@ import Services from './pages/Services';
 import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
 import CaseStudy from './pages/CaseStudy';
+import CustomCursor from './components/CustomCursor';
 import {
   SmoothScroll,
-  AnimatedCursor,
-  ParticlesBackground,
 } from './components/animations';
 
 function App() {
@@ -21,8 +20,7 @@ function App() {
       <SmoothScroll>
         <ScrollToTop />
         <div className="min-h-screen bg-black relative">
-          <ParticlesBackground />
-          <AnimatedCursor />
+          <CustomCursor />
           <Navbar />
           <main className="relative z-10">
             <AnimatePresence mode="wait">
