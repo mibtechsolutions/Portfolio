@@ -13,6 +13,7 @@ import {
   ChevronDown,
   ArrowUpRight
 } from 'lucide-react';
+import { AnimatedBackground, GradientBlob } from '../components/AnimatedBackground';
 
 const API_BASE_URL = 'http://localhost:3001/api';
 
@@ -85,9 +86,11 @@ const CaseStudy = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black relative">
       {/* Hero Section - Cinematic */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        <AnimatedBackground type="particles" color="gold" density="medium" />
+        <GradientBlob className="opacity-40" />
         <motion.div
           style={{ opacity: heroOpacity, scale: heroScale }}
           className="absolute inset-0"
@@ -136,8 +139,10 @@ const CaseStudy = () => {
 
       {/* Project Overview */}
       {project.overview && (
-        <section className="py-20 px-6 bg-gradient-to-b from-black to-gold-500/5">
-          <div className="max-w-6xl mx-auto">
+        <section className="py-20 px-6 bg-gradient-to-b from-black to-gold-500/5 relative overflow-hidden">
+          <AnimatedBackground type="particles" color="gold" density="low" />
+          <GradientBlob className="opacity-30" />
+          <div className="max-w-6xl mx-auto relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -172,8 +177,10 @@ const CaseStudy = () => {
 
       {/* Client Problems */}
       {project.client_problems && project.client_problems.length > 0 && (
-        <section className="py-20 px-6">
-          <div className="max-w-6xl mx-auto">
+        <section className="py-20 px-6 relative overflow-hidden">
+          <AnimatedBackground type="particles" color="gold" density="low" />
+          <GradientBlob className="opacity-30" />
+          <div className="max-w-6xl mx-auto relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -216,8 +223,10 @@ const CaseStudy = () => {
 
       {/* Client Needs */}
       {project.client_needs && project.client_needs.length > 0 && (
-        <section className="py-20 px-6 bg-gradient-to-b from-gold-500/5 to-black">
-          <div className="max-w-6xl mx-auto">
+        <section className="py-20 px-6 bg-gradient-to-b from-gold-500/5 to-black relative overflow-hidden">
+          <AnimatedBackground type="particles" color="gold" density="low" />
+          <GradientBlob className="opacity-30" />
+          <div className="max-w-6xl mx-auto relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -257,8 +266,10 @@ const CaseStudy = () => {
 
       {/* Our Solution */}
       {project.solution_approach && (
-        <section className="py-20 px-6">
-          <div className="max-w-6xl mx-auto">
+        <section className="py-20 px-6 relative overflow-hidden">
+          <AnimatedBackground type="particles" color="gold" density="low" />
+          <GradientBlob className="opacity-30" />
+          <div className="max-w-6xl mx-auto relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -293,8 +304,10 @@ const CaseStudy = () => {
 
       {/* Automation Used */}
       {project.automation_used && project.automation_used.length > 0 && (
-        <section className="py-20 px-6 bg-gradient-to-b from-black to-gold-500/5">
-          <div className="max-w-6xl mx-auto">
+        <section className="py-20 px-6 bg-gradient-to-b from-black to-gold-500/5 relative overflow-hidden">
+          <AnimatedBackground type="particles" color="gold" density="low" />
+          <GradientBlob className="opacity-30" />
+          <div className="max-w-6xl mx-auto relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -339,8 +352,10 @@ const CaseStudy = () => {
 
       {/* Services Provided */}
       {project.services_provided && project.services_provided.length > 0 && (
-        <section className="py-20 px-6">
-          <div className="max-w-6xl mx-auto">
+        <section className="py-20 px-6 relative overflow-hidden">
+          <AnimatedBackground type="particles" color="gold" density="low" />
+          <GradientBlob className="opacity-30" />
+          <div className="max-w-6xl mx-auto relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -379,8 +394,10 @@ const CaseStudy = () => {
 
       {/* SEO Details */}
       {project.seo_details && (
-        <section className="py-20 px-6 bg-gradient-to-b from-gold-500/5 to-black">
-          <div className="max-w-6xl mx-auto">
+        <section className="py-20 px-6 bg-gradient-to-b from-gold-500/5 to-black relative overflow-hidden">
+          <AnimatedBackground type="particles" color="gold" density="low" />
+          <GradientBlob className="opacity-30" />
+          <div className="max-w-6xl mx-auto relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -415,8 +432,10 @@ const CaseStudy = () => {
 
       {/* Before & After */}
       {project.before_image_url && project.after_image_url && (
-        <section className="py-20 px-6">
-          <div className="max-w-6xl mx-auto">
+        <section className="py-20 px-6 relative overflow-hidden">
+          <AnimatedBackground type="particles" color="gold" density="low" />
+          <GradientBlob className="opacity-30" />
+          <div className="max-w-6xl mx-auto relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -468,8 +487,10 @@ const CaseStudy = () => {
 
       {/* Client Review */}
       {project.client_review && (
-        <section className="py-20 px-6 bg-gradient-to-b from-black to-gold-500/5">
-          <div className="max-w-4xl mx-auto">
+        <section className="py-20 px-6 bg-gradient-to-b from-black to-gold-500/5 relative overflow-hidden">
+          <AnimatedBackground type="particles" color="gold" density="low" />
+          <GradientBlob className="opacity-40" />
+          <div className="max-w-4xl mx-auto relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -511,8 +532,10 @@ const CaseStudy = () => {
       )}
 
       {/* CTA Section */}
-      <section className="py-20 px-6">
-        <div className="max-w-4xl mx-auto">
+      <section className="py-20 px-6 relative overflow-hidden">
+        <AnimatedBackground type="particles" color="gold" density="medium" />
+        <GradientBlob className="opacity-60" />
+        <div className="max-w-4xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -88,6 +88,7 @@ const About = () => {
       {/* The MiB Edge Section */}
       <EnhancedSection className="py-20 px-6 relative overflow-hidden" type="fade" delay={0.1}>
         <AnimatedBackground type="particles" color="gold" density="low" />
+        <GradientBlob className="opacity-30" />
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <EnhancedSection direction="left" delay={0.2}>
@@ -136,9 +137,10 @@ const About = () => {
         </div>
       </EnhancedSection>
 
-      {/* Mission & Vision */}
+      {/* Why Choose MiB? */}
       <EnhancedSection className="py-20 px-6 bg-gradient-to-b from-transparent via-gold-500/5 to-transparent relative overflow-hidden" type="fade" delay={0.1}>
-        <GradientBlob className="opacity-30" />
+        <AnimatedBackground type="particles" color="gold" density="low" />
+        <GradientBlob className="opacity-40" />
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-8">
             <EnhancedSection direction="left" delay={0.2} type="slide">
@@ -167,6 +169,7 @@ const About = () => {
       {/* Expertise Section */}
       <EnhancedSection className="py-20 px-6 relative overflow-hidden" type="fade" delay={0.1}>
         <AnimatedBackground type="particles" color="gold" density="low" />
+        <GradientBlob className="opacity-40" />
         <div className="max-w-7xl mx-auto relative z-10">
           <EnhancedSection className="text-center mb-16" type="scale" delay={0.2}>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -198,7 +201,8 @@ const About = () => {
 
       {/* Team Section */}
       <EnhancedSection className="py-20 px-6 relative overflow-hidden" type="fade" delay={0.1}>
-        <GradientBlob className="opacity-40" />
+        <AnimatedBackground type="particles" color="gold" density="low" />
+        <GradientBlob className="opacity-30" />
         <div className="max-w-7xl mx-auto relative z-10">
           <EnhancedSection className="text-center mb-16" type="scale" delay={0.2}>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -238,6 +242,7 @@ const About = () => {
       {/* Why Choose MiB? */}
       <EnhancedSection className="py-20 px-6 bg-gradient-to-b from-transparent via-gold-500/5 to-transparent relative overflow-hidden" type="fade" delay={0.1}>
         <AnimatedBackground type="particles" color="gold" density="low" />
+        <GradientBlob className="opacity-40" />
         <div className="max-w-7xl mx-auto relative z-10">
           <EnhancedSection className="text-center mb-16" type="scale" delay={0.2}>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">

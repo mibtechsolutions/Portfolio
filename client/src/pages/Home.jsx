@@ -130,7 +130,8 @@ const Home = () => {
 
       {/* Stats Section */}
       <EnhancedSection className="py-20 px-6 border-y border-gold-500/10 relative overflow-hidden" type="scale" delay={0.1}>
-        <GridLines />
+        <AnimatedBackground type="particles" color="gold" density="low" />
+        <GradientBlob className="opacity-30" />
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -215,6 +216,7 @@ const Home = () => {
       {/* Driving Digital Transformation Section */}
       <EnhancedSection className="py-20 px-6 bg-gradient-to-b from-transparent via-gold-500/5 to-transparent relative overflow-hidden" type="fade" delay={0.1}>
         <AnimatedBackground type="particles" color="gold" density="low" />
+        <GradientBlob className="opacity-30" />
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <EnhancedSection direction="left" delay={0.2}>

@@ -18,6 +18,10 @@ const Contact = () => {
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const API_BASE_URL = 'http://localhost:3001/api';
 
   const faqs = [
     { question: 'How quickly can you respond to inquiries?', answer: 'We typically respond within 1 business day. For urgent matters, use our WhatsApp channel for instant support.' },
@@ -27,11 +31,38 @@ const Contact = () => {
     { question: 'Can you sign an NDA?', answer: 'Yes, we are happy to sign a Non-Disclosure Agreement to protect your confidential information.' }
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-    setFormData({ name: '', email: '', phone: '', company: '', message: '' });
+    setLoading(true);
+    setError(null);
+    
+    try {
+      const response = await fetch(`${API_BASE_URL}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`);
+      }
+      
+      const result = await response.json();
+      
+      console.log('📤 Form submission result:', result);
+      
+      setSubmitted(true);
+      setFormData({ name: '', email: '', phone: '', company: '', message: '' });
+      setTimeout(() => setSubmitted(false), 5000);
+      
+    } catch (err) {
+      console.error('❌ Error submitting form:', err);
+      setError(err.message || 'Failed to submit form. Please make sure the backend server is running!');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -98,6 +129,7 @@ const Contact = () => {
       {/* Contact Form & Info */}
       <section className="py-20 px-6 relative overflow-hidden">
         <AnimatedBackground type="particles" color="gold" density="low" />
+        <GradientBlob className="opacity-30" />
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-3 gap-8">
             <div className="lg:col-span-1 space-y-6">
@@ -235,13 +267,28 @@ const Contact = () => {
                         placeholder="Tell us about your project..."
                       />
                     </div>
+                    
+                    {error && (
+                      <div className="mb-4 p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400">
+                        {error}
+                      </div>
+                    )}
+                    
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       type="submit"
-                      className="w-full px-6 py-3 bg-gold-gradient text-black font-bold rounded-lg gold-glow flex items-center justify-center gap-2"
+                      disabled={loading}
+                      className="w-full px-6 py-3 bg-gold-gradient text-black font-bold rounded-lg gold-glow flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      Send Message <Send size={20} />
+                      {loading ? (
+                        <>
+                          <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+                          Sending...
+                        </>
+                      ) : (
+                        <>Send Message <Send size={20} /></>
+                      )}
                     </motion.button>
                   </form>
                 )}

@@ -77,7 +77,8 @@ const Portfolio = () => {
 
       {/* Metrics */}
       <section className="py-16 px-6 border-y border-gold-500/10 relative overflow-hidden">
-        <GridLines />
+        <AnimatedBackground type="particles" color="gold" density="low" />
+        <GradientBlob className="opacity-30" />
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {metrics.map((metric, index) => (
@@ -100,6 +101,7 @@ const Portfolio = () => {
       {/* Filter */}
       <section className="py-16 px-6 relative overflow-hidden">
         <AnimatedBackground type="particles" color="gold" density="low" />
+        <GradientBlob className="opacity-30" />
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

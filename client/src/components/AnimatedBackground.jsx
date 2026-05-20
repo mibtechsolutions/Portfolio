@@ -15,6 +15,8 @@ export const AnimatedBackground = ({
     const ctx = canvas.getContext('2d');
     let animationId;
     let particles = [];
+    let interpolatedMouse = { x: null, y: null };
+    let targetMouse = { x: null, y: null };
 
     const resizeCanvas = () => {
       canvas.width = canvas.offsetWidth;
@@ -72,13 +74,13 @@ export const AnimatedBackground = ({
           const dx = mousePos.x - this.x;
           const dy = mousePos.y - this.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          const maxDistance = 200;
+          const maxDistance = 300;
 
           if (distance < maxDistance) {
             const force = (maxDistance - distance) / maxDistance;
             const angle = Math.atan2(dy, dx);
-            this.x -= Math.cos(angle) * force * 2;
-            this.y -= Math.sin(angle) * force * 2;
+            this.x -= Math.cos(angle) * force * 0.5;
+            this.y -= Math.sin(angle) * force * 0.5;
           }
         }
       }
@@ -162,7 +164,7 @@ export const AnimatedBackground = ({
       if (mousePos.x !== null && mousePos.y !== null) {
         for (let i = 0; i < 8; i++) {
           const angle = (i / 8) * Math.PI * 2;
-          const distance = 40 + Math.sin(Date.now() * 0.003 + i) * 10;
+          const distance = 40 + Math.sin(Date.now() * 0.001 + i) * 10;
           
           ctx.beginPath();
           ctx.moveTo(mousePos.x, mousePos.y);
@@ -171,8 +173,8 @@ export const AnimatedBackground = ({
             mousePos.y + Math.sin(angle) * distance
           );
           ctx.strokeStyle = selectedColors.primary;
-          ctx.lineWidth = 1.5;
-          ctx.globalAlpha = 0.4;
+          ctx.lineWidth = 1.2;
+          ctx.globalAlpha = 0.3;
           ctx.stroke();
           ctx.globalAlpha = 1;
         }
@@ -180,34 +182,45 @@ export const AnimatedBackground = ({
         ctx.beginPath();
         ctx.arc(mousePos.x, mousePos.y, 100, 0, Math.PI * 2);
         ctx.fillStyle = selectedColors.glow;
-        ctx.globalAlpha = 0.2;
+        ctx.globalAlpha = 0.15;
         ctx.fill();
         ctx.globalAlpha = 1;
       }
     };
 
     const animate = () => {
+      if (targetMouse.x !== null && targetMouse.y !== null) {
+        if (interpolatedMouse.x === null || interpolatedMouse.y === null) {
+          interpolatedMouse = { ...targetMouse };
+        } else {
+          interpolatedMouse.x = interpolatedMouse.x + (targetMouse.x - interpolatedMouse.x) * 0.05;
+          interpolatedMouse.y = interpolatedMouse.y + (targetMouse.y - interpolatedMouse.y) * 0.05;
+        }
+      } else {
+        interpolatedMouse = { x: null, y: null };
+      }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      drawMouseEffect(mouse);
+      drawMouseEffect(interpolatedMouse);
       
       particles.forEach((particle) => {
-        particle.update(mouse);
-        particle.draw(mouse);
+        particle.update(interpolatedMouse);
+        particle.draw(interpolatedMouse);
       });
       
-      connectParticles(mouse);
+      connectParticles(interpolatedMouse);
       
       animationId = requestAnimationFrame(animate);
     };
 
     const handleMouseMove = (e) => {
       const rect = canvas.getBoundingClientRect();
-      setMouse({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+      targetMouse = { x: e.clientX - rect.left, y: e.clientY - rect.top };
     };
 
     const handleMouseLeave = () => {
-      setMouse({ x: null, y: null });
+      targetMouse = { x: null, y: null };
     };
 
     window.addEventListener('resize', resizeCanvas);
@@ -294,10 +307,7 @@ export const GridLines = () => {
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: `
-          linear-gradient(to right, rgba(212, 175, 55, 0.06) 1px, transparent 1px,
-          linear-gradient(to bottom, rgba(212, 175, 55, 0.06) 1px, transparent 1px
-        `,
+          backgroundImage: `linear-gradient(to right, rgba(212, 175, 55, 0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(212, 175, 55, 0.06) 1px, transparent 1px)`,
           backgroundSize: '40px 40px',
         }}
       />
