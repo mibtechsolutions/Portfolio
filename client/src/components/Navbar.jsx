@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import logo from '../assets/logo.jpeg';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -34,12 +35,21 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <Link to="/">
+          <Link to="/" className="flex items-center gap-4">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="text-2xl font-bold text-gold-gradient"
+              className="flex items-center gap-4"
             >
-              MiB Tech
+              <img
+                src={logo}
+                alt="MIB Tech Solutions"
+                className="h-20 w-20 rounded-full object-cover"
+              />
+              <div className="flex flex-col">
+                <span className="text-xl md:text-2xl font-bold text-gold-gradient">
+                  MIB Tech Solutions
+                </span>
+              </div>
             </motion.div>
           </Link>
 

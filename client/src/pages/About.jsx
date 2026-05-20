@@ -6,6 +6,8 @@ import {
   MagneticButton,
 } from '../components/animations';
 import { AnimatedBackground, GradientBlob, GridLines } from '../components/AnimatedBackground';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import homeHero from '../assets/home-hero.png';
 
 const About = () => {
   const expertise = [
@@ -72,7 +74,7 @@ const About = () => {
               <div className="absolute -inset-10 bg-gold-500/20 blur-3xl rounded-full"></div>
               <div className="relative">
                 <img
-                  src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=futuristic%20AI%20neural%20network%20visualization%2C%20gold%20and%20neon%20lines%2C%20dark%20black%20background%2C%20digital%20enterprise%20dashboard&image_size=square_hd"
+                  src={homeHero}
                   alt="AI Neural Network"
                   className="rounded-2xl w-full h-auto drop-shadow-2xl"
                   style={{
@@ -94,9 +96,10 @@ const About = () => {
             <EnhancedSection direction="left" delay={0.2}>
               <div className="relative">
                 <div className="absolute inset-0 bg-gold-500/15 blur-3xl rounded-3xl"></div>
-                <img
-                  src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=professional%20business%20team%20in%20modern%20office%20with%20futuristic%20AI%20interfaces%2C%20blue%20and%20gold%20lighting%2C%20dark%20luxury%20theme&image_size=landscape_16_9"
-                  alt="MiB Tech Team"
+                <DotLottieReact
+                  src="https://lottie.host/9482092f-1d2b-449e-9467-aa865c817813/i6EF42yDOu.lottie"
+                  loop
+                  autoplay
                   className="relative rounded-2xl w-full"
                 />
               </div>

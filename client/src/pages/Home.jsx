@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Check, Zap, Cpu, MessageSquare, Globe, Database, Code, BarChart3, Brain, TrendingUp, Loader2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import {
   TextReveal,
   MagneticButton,
@@ -10,6 +11,7 @@ import {
   EnhancedSection,
 } from '../components/animations';
 import { AnimatedBackground, GradientBlob, GridLines } from '../components/AnimatedBackground';
+import homeHero from '../assets/home-hero.png';
 
 const API_BASE_URL = 'http://localhost:3001/api';
 
@@ -114,13 +116,11 @@ const Home = () => {
 
             <EnhancedSection direction="left" className="relative" delay={0.4}>
               <TiltCard className="relative">
-                <img
-                  src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=modern%20AI%20robot%20interface%2C%20gold%20accent%20lights%2C%20dark%20black%20background%2C%20futuristic%20technology%2C%20digital%20art&image_size=square_hd"
-                  alt="AI Automation & Portfolio Services"
+                <DotLottieReact
+                  src="https://lottie.host/5b766836-f45c-4d0f-9902-d96769c5057b/HafesgAsWR.lottie"
+                  loop
+                  autoplay
                   className="rounded-2xl w-full h-auto"
-                  style={{
-                    filter: 'drop-shadow(0 0 35px rgba(212, 175, 55, 0.6)) drop-shadow(0 0 70px rgba(212, 175, 55, 0.3))',
-                  }}
                 />
               </TiltCard>
             </EnhancedSection>

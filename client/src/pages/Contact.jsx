@@ -7,6 +7,8 @@ import {
   MagneticButton,
 } from '../components/animations';
 import { AnimatedBackground, GradientBlob, GridLines } from '../components/AnimatedBackground';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import homeHero from '../assets/home-hero.png';
 
 const Contact = () => {
   const [expandedFaq, setExpandedFaq] = useState(null);
@@ -115,11 +117,10 @@ const Contact = () => {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="absolute inset-0 bg-gold-500/20 blur-3xl rounded-full"></div>
-              <img
-                src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=futuristic%20contact%20center%2C%20digital%20communication%2C%20AI%20interface%2C%20dark%20luxury%20theme&image_size=landscape_16_9"
-                alt="Contact"
-                className="relative rounded-2xl glassmorphism border-gold p-2"
+              <DotLottieReact
+                src="https://lottie.host/a6667501-b715-434d-a90e-c35a89642cd1/15rykWy5eg.lottie"
+                loop
+                autoplay
               />
             </motion.div>
           </div>
