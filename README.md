@@ -34,6 +34,17 @@ cd client
 npm run build
 ```
 
+## Deployment
+
+### Frontend (Netlify)
+- Deployed to: https://mibtechsolutions.netlify.app
+- Build command: `cd client && npm run build`
+- Publish directory: `client/dist`
+
+### Backend (Render)
+- Deployed to: https://mib-tech-backend.onrender.com
+- Environment variables configured in Render dashboard
+
 ## Pages
 
 1. `/` - Home
