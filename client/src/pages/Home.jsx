@@ -91,17 +91,16 @@ const Home = () => {
               </motion.div>
 
               <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-                <TextReveal text="Transforming" delay={0.3} />
+                Welcome to
                 <span className="text-gold-gradient">
-                  <TextReveal text=" Businesses" delay={0.5} />
+                  &nbsp;MiB Tech Solutions
                 </span>
-                <br />
-                <TextReveal text="with AI Automation" delay={0.7} />
               </h1>
 
               <p className="text-xl text-gray-400 max-w-lg">
-                Premium enterprise-level automation solutions powered by cutting-edge AI technology.
-                Experience the future of business automation today.
+                Welcome to MiB Tech Solutions — your trusted technology and AI transformation partner.
+                We help businesses automate operations, boost productivity, and accelerate growth using advanced AI.
+                Our smart automation solutions reduce manual work, increase efficiency, and build scalable systems.
               </p>
 
               <div className="flex flex-wrap gap-4">

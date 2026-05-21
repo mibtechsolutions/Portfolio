@@ -57,7 +57,7 @@ const About = () => {
               </h1>
 
               <p className="text-lg text-gray-400 max-w-lg">
-                Streamline operations and unlock exponential growth with our bespoke intelligent automation solutions. We turn complexity into competitive advantage.
+                Welcome to MiB Tech Solutions — your trusted technology and AI transformation partner. We help businesses automate operations, boost productivity, and accelerate growth using advanced AI. Our smart automation solutions reduce manual work, increase efficiency, and build scalable systems.
               </p>
 
               <div className="flex flex-wrap gap-4">
@@ -256,46 +256,25 @@ const About = () => {
             </p>
           </EnhancedSection>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {[
-              {
-                icon: Shield,
-                title: '100% Security',
-                desc: 'Enterprise-grade security protocols and data protection measures for complete peace of mind.'
-              },
-              {
-                icon: Zap,
-                title: 'Lightning Fast',
-                desc: 'Optimized performance and rapid deployment times to get your solutions up and running quickly.'
-              },
-              {
-                icon: Target,
-                title: 'Precision Focus',
-                desc: 'Tailored solutions designed specifically for your unique business needs and goals.'
-              },
-              {
-                icon: Users,
-                title: 'Expert Team',
-                desc: 'A dedicated team of experienced professionals committed to your success.'
-              },
-              {
-                icon: Award,
-                title: 'Proven Excellence',
-                desc: 'Track record of delivering exceptional results for hundreds of satisfied clients.'
-              },
-              {
-                icon: Clock,
-                title: '24/7 Support',
-                desc: 'Round-the-clock support and maintenance to keep your systems running smoothly.'
-              },
+              { icon: Users, title: 'Experienced Professional Team' },
+              { icon: Brain, title: 'Customized AI-Based Solutions' },
+              { icon: Shield, title: 'End-to-End Technology Support' },
+              { icon: Shield, title: '100% Security' },
+              { icon: Zap, title: 'Innovative & Future-Ready Approach' },
+              { icon: Clock, title: 'Dedicated Client Support 24/7' },
             ].map((item, index) => (
               <EnhancedSection key={index} delay={index * 0.1} type="scale" className="h-full">
-                <TiltCard className="glassmorphism rounded-xl p-6 border-gold h-full">
-                  <div className="w-14 h-14 rounded-lg bg-gold-gradient/20 flex items-center justify-center mb-4">
-                    <item.icon size={28} className="text-gold-500" />
+                <TiltCard className="glassmorphism rounded-xl p-8 border-gold h-full group hover:border-gold-500/50 transition-all">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-lg bg-gold-gradient/20 flex items-center justify-center flex-shrink-0 group-hover:gold-glow transition-all">
+                      <item.icon size={24} className="text-gold-500" />
+                    </div>
+                    <h3 className="text-xl font-bold group-hover:text-gold-400 transition-colors">
+                      ✔️ {item.title}
+                    </h3>
                   </div>
-                  <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-                  <p className="text-gray-400">{item.desc}</p>
                 </TiltCard>
               </EnhancedSection>
             ))}

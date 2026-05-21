@@ -43,7 +43,7 @@ const Navbar = () => {
               <img
                 src={logo}
                 alt="MIB Tech Solutions"
-                className="h-20 w-20 rounded-full object-cover"
+                className="h-12 w-12 rounded-full object-cover"
               />
               <div className="flex flex-col">
                 <span className="text-xl md:text-2xl font-bold text-gold-gradient">
