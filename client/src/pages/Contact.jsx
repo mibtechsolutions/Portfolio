@@ -23,7 +23,7 @@ const Contact = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const API_BASE_URL = 'http://localhost:3001/api';
+  const API_BASE_URL = 'https://mib-tech-backend.onrender.com/api';
 
   const faqs = [
     { question: 'How quickly can you respond to inquiries?', answer: 'We typically respond within 1 business day. For urgent matters, use our WhatsApp channel for instant support.' },

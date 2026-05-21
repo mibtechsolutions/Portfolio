@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { AnimatedBackground, GradientBlob } from '../components/AnimatedBackground';
 
-const API_BASE_URL = 'http://localhost:3001/api';
+const API_BASE_URL = 'https://mib-tech-backend.onrender.com/api';
 
 const CaseStudy = () => {
   const { id } = useParams();
