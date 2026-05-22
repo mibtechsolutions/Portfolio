@@ -47,9 +47,14 @@ app.post('/api/contact', async (req, res) => {
     const { name, email, phone, company, message } = req.body;
     
     console.log('📨 Processing contact form submission:', { name, email, phone, company });
+    console.log('🔑 Environment Variables Check:');
+    console.log('  - EMAIL_USER:', process.env.EMAIL_USER ? '✓ Set' : '✗ NOT SET');
+    console.log('  - EMAIL_PASS:', process.env.EMAIL_PASS ? '✓ Set (length: ' + process.env.EMAIL_PASS.length + ')' : '✗ NOT SET');
+    console.log('  - RECIPIENT_EMAIL:', process.env.RECIPIENT_EMAIL ? '✓ Set' : '✗ NOT SET');
     
     let data = null;
     let emailSent = false;
+    let emailError = null;
     
     try {
       console.log('💾 Trying to save to Supabase...');
@@ -87,6 +92,10 @@ app.post('/api/contact', async (req, res) => {
     }
     
     try {
+      console.log('📧 Trying to send email...');
+      console.log('  - From:', process.env.EMAIL_USER);
+      console.log('  - To:', process.env.RECIPIENT_EMAIL);
+      
       const mailOptions = {
         from: process.env.EMAIL_USER,
         to: process.env.RECIPIENT_EMAIL,
@@ -104,11 +113,17 @@ app.post('/api/contact', async (req, res) => {
         `
       };
 
+      console.log('📤 Sending email with nodemailer...');
       await transporter.sendMail(mailOptions);
       emailSent = true;
-      console.log('✅ Email sent successfully');
+      console.log('✅ Email sent successfully!');
     } catch (emailErr) {
       console.error('❌ Failed to send email:', emailErr);
+      console.error('   Error details:', emailErr.message);
+      if (emailErr.response) {
+        console.error('   SMTP Response:', emailErr.response);
+      }
+      emailError = emailErr.message;
     }
 
     res.status(201).json({
@@ -117,7 +132,8 @@ app.post('/api/contact', async (req, res) => {
       data,
       details: {
         savedToSupabase: !!data,
-        emailSent
+        emailSent,
+        emailError
       }
     });
   } catch (error) {
