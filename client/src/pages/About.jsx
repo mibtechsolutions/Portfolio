@@ -8,6 +8,7 @@ import {
 import { AnimatedBackground, GradientBlob, GridLines } from '../components/AnimatedBackground';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import homeHero from '../assets/home-hero.png';
+import ceoImg from '../assets/ceo.png';
 
 const About = () => {
   const expertise = [
@@ -20,7 +21,7 @@ const About = () => {
   ];
 
   const team = [
-    { name: 'Alex Morgan', role: 'CEO & Founder', img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop' },
+    { name: 'Alex Morgan', role: 'CEO & Founder', img: ceoImg },
     { name: 'Sarah Williams', role: 'CTO', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop' },
     { name: 'David Chen', role: 'Lead Developer', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop' },
     { name: 'Emily Davis', role: 'AI Researcher', img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop' },
@@ -225,17 +226,24 @@ const About = () => {
                 direction="up"
                 className="h-full"
               >
-                <TiltCard className="glassmorphism rounded-xl overflow-hidden border-gold h-full">
-                  <img
-                    src={member.img}
-                    alt={member.name}
-                    className="w-full h-64 object-cover"
-                  />
+                <div className="glassmorphism rounded-xl overflow-hidden border-gold h-full relative group cursor-pointer">
+                  <div className="relative h-80 overflow-hidden">
+                    <img
+                      src={member.img}
+                      alt={member.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                      <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
+                      <p className="text-gold-400">{member.role}</p>
+                    </div>
+                  </div>
                   <div className="p-6 text-center">
                     <h3 className="text-xl font-bold mb-1">{member.name}</h3>
                     <p className="text-gold-500">{member.role}</p>
                   </div>
-                </TiltCard>
+                </div>
               </EnhancedSection>
             ))}
           </div>

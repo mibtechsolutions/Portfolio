@@ -147,7 +147,7 @@ const Contact = () => {
                   </div>
                   <h3 className="text-xl font-bold">Office</h3>
                 </div>
-                <p className="text-gray-400">MIB Tech solutions, Nivedh Vikas Apartment<br />27/9, Pankaja Mills Rd, Puliakulam<br />Coimbatore, Tamil Nadu 641045</p>
+                <p className="text-gray-400">Coimbatore City Office<br />MIB Tech solutions, Nivedh Vikas Apartment<br />27/9, Pankaja Mills Rd, Puliakulam<br />Coimbatore, Tamil Nadu 641045</p>
               </motion.div>
 
               <motion.div
