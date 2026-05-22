@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const { Resend } = require('resend');
+const nodemailer = require('nodemailer');
 const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
@@ -22,7 +22,22 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   }
 });
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false,
+  requireTLS: true,
+  connectionTimeout: 10000,
+  greetingTimeout: 10000,
+  socketTimeout: 10000,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  },
+  tls: {
+    rejectUnauthorized: false
+  }
+});
 
 app.get('/', (req, res) => {
   res.json({
@@ -42,7 +57,8 @@ app.post('/api/contact', async (req, res) => {
     
     console.log('📨 Processing contact form submission:', { name, email, phone, company });
     console.log('🔑 Environment Variables Check:');
-    console.log('  - RESEND_API_KEY:', process.env.RESEND_API_KEY ? '✓ Set (length: ' + process.env.RESEND_API_KEY.length + ')' : '✗ NOT SET');
+    console.log('  - EMAIL_USER:', process.env.EMAIL_USER ? '✓ Set' : '✗ NOT SET');
+    console.log('  - EMAIL_PASS:', process.env.EMAIL_PASS ? '✓ Set (length: ' + process.env.EMAIL_PASS.length + ')' : '✗ NOT SET');
     console.log('  - RECIPIENT_EMAIL:', process.env.RECIPIENT_EMAIL ? '✓ Set' : '✗ NOT SET');
     
     let data = null;
@@ -85,13 +101,13 @@ app.post('/api/contact', async (req, res) => {
     }
     
     try {
-      console.log('📧 Trying to send email with Resend...');
-      console.log('  - From:', 'onboarding@resend.dev');
+      console.log('📧 Trying to send email with nodemailer...');
+      console.log('  - From:', process.env.EMAIL_USER);
       console.log('  - To:', process.env.RECIPIENT_EMAIL);
       
-      const { data, error } = await resend.emails.send({
-        from: 'onboarding@resend.dev',
-        to: [process.env.RECIPIENT_EMAIL],
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: process.env.RECIPIENT_EMAIL,
         subject: `New Contact Form Submission from ${name}`,
         html: `
           <h2 style="color: #D4AF37;">New Contact Form Submission</h2>
@@ -104,17 +120,18 @@ app.post('/api/contact', async (req, res) => {
             <p style="background: #2a2a2a; padding: 15px; border-radius: 4px;">${message}</p>
           </div>
         `
-      });
+      };
 
-      if (error) {
-        throw error;
-      }
-      
+      console.log('📤 Sending email...');
+      await transporter.sendMail(mailOptions);
       emailSent = true;
-      console.log('✅ Email sent successfully! Resend ID:', data?.id);
+      console.log('✅ Email sent successfully!');
     } catch (emailErr) {
       console.error('❌ Failed to send email:', emailErr);
       console.error('   Error details:', emailErr.message);
+      if (emailErr.response) {
+        console.error('   SMTP Response:', emailErr.response);
+      }
       emailError = emailErr.message;
     }
 
@@ -213,6 +230,15 @@ app.get('/api/testimonials', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`🚀 MiB Tech Solutions API Server running on http://localhost:${PORT}`);
+  
+  try {
+    console.log('🔍 Verifying SMTP transporter connection...');
+    await transporter.verify();
+    console.log('✅ SMTP transporter connection verified successfully!');
+  } catch (verifyErr) {
+    console.warn('⚠️ SMTP transporter verification failed:', verifyErr.message);
+    console.warn('   This might be okay - emails might still work!');
+  }
 });
