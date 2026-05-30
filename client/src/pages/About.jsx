@@ -75,14 +75,13 @@ const About = () => {
             <EnhancedSection direction="left" className="relative" delay={0.3}>
               <div className="absolute -inset-10 bg-gold-500/20 blur-3xl rounded-full"></div>
               <div className="relative">
-                <img
-                  src={homeHero}
-                  alt="AI Neural Network"
-                  className="rounded-2xl w-full h-auto drop-shadow-2xl"
+                <spline-viewer 
+                  url="https://prod.spline.design/hJK-KuivBGj4d8h4/scene.splinecode" 
+                  className="rounded-2xl w-full aspect-square lg:aspect-[4/3]"
                   style={{
                     filter: 'drop-shadow(0 0 30px rgba(212, 175, 55, 0.5)) drop-shadow(0 0 60px rgba(212, 175, 55, 0.25))',
                   }}
-                />
+                ></spline-viewer>
               </div>
             </EnhancedSection>
           </div>

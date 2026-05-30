@@ -7,27 +7,33 @@ export const useLenis = () => useContext(LenisContext);
 
 const SmoothScroll = ({ children }) => {
   const lenisRef = useRef(null);
+  const rafIdRef = useRef(null);
 
   useEffect(() => {
     lenisRef.current = new Lenis({
-      duration: 1.2,
+      duration: 1.0,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
       smoothTouch: false,
-      touchMultiplier: 2,
+      touchMultiplier: 1.5,
     });
 
     const raf = (time) => {
       lenisRef.current.raf(time);
-      requestAnimationFrame(raf);
+      rafIdRef.current = requestAnimationFrame(raf);
     };
 
-    requestAnimationFrame(raf);
+    rafIdRef.current = requestAnimationFrame(raf);
 
     return () => {
-      lenisRef.current.destroy();
+      if (rafIdRef.current) {
+        cancelAnimationFrame(rafIdRef.current);
+      }
+      if (lenisRef.current) {
+        lenisRef.current.destroy();
+      }
     };
   }, []);
 

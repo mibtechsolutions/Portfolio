@@ -162,27 +162,10 @@ export const AnimatedBackground = ({
 
     const drawMouseEffect = (mousePos) => {
       if (mousePos.x !== null && mousePos.y !== null) {
-        for (let i = 0; i < 8; i++) {
-          const angle = (i / 8) * Math.PI * 2;
-          const distance = 40 + Math.sin(Date.now() * 0.001 + i) * 10;
-          
-          ctx.beginPath();
-          ctx.moveTo(mousePos.x, mousePos.y);
-          ctx.lineTo(
-            mousePos.x + Math.cos(angle) * distance,
-            mousePos.y + Math.sin(angle) * distance
-          );
-          ctx.strokeStyle = selectedColors.primary;
-          ctx.lineWidth = 1.2;
-          ctx.globalAlpha = 0.3;
-          ctx.stroke();
-          ctx.globalAlpha = 1;
-        }
-
         ctx.beginPath();
-        ctx.arc(mousePos.x, mousePos.y, 100, 0, Math.PI * 2);
+        ctx.arc(mousePos.x, mousePos.y, 80, 0, Math.PI * 2);
         ctx.fillStyle = selectedColors.glow;
-        ctx.globalAlpha = 0.15;
+        ctx.globalAlpha = 0.1;
         ctx.fill();
         ctx.globalAlpha = 1;
       }
