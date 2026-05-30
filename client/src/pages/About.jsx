@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { useEffect, useRef } from 'react';
 import { Target, Eye, Award, Shield, Users, Zap, CheckCircle, TrendingUp, Code, Cpu, Globe, Database, Brain, Bot, BarChart3, Clock } from 'lucide-react';
 import {
   EnhancedSection,
@@ -8,47 +7,10 @@ import {
 } from '../components/animations';
 import { AnimatedBackground, GradientBlob, GridLines } from '../components/AnimatedBackground';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import homeHero from '../assets/home-hero.png';
 import ceoImg from '../assets/ceo.png';
 
 const About = () => {
-  const splineRef = useRef(null);
-
-  useEffect(() => {
-    const hideSplineLogo = () => {
-      const splineViewer = splineRef.current;
-      if (splineViewer) {
-        const shadowRoot = splineViewer.shadowRoot;
-        if (shadowRoot) {
-          const existingStyle = shadowRoot.querySelector('style#hide-spline-logo');
-          if (!existingStyle) {
-            const style = document.createElement('style');
-            style.id = 'hide-spline-logo';
-            style.textContent = `
-              *, *::before, *::after {
-                --spline-logo-display: none !important;
-              }
-              a, [class*="logo"], [class*="watermark"], [href*="spline"] {
-                display: none !important;
-                opacity: 0 !important;
-                visibility: hidden !important;
-                pointer-events: none !important;
-              }
-            `;
-            shadowRoot.appendChild(style);
-          }
-        }
-      }
-    };
-
-    // Run only a few times
-    hideSplineLogo();
-    const timeout1 = setTimeout(hideSplineLogo, 500);
-    const timeout2 = setTimeout(hideSplineLogo, 1500);
-    return () => {
-      clearTimeout(timeout1);
-      clearTimeout(timeout2);
-    };
-  }, []);
 
   const expertise = [
     { icon: Code, title: 'Custom Development', desc: 'Bespoke solutions tailored to your needs' },
@@ -113,14 +75,14 @@ const About = () => {
             <EnhancedSection direction="left" className="relative" delay={0.3}>
               <div className="absolute -inset-10 bg-gold-500/20 blur-3xl rounded-full"></div>
               <div className="relative">
-                <spline-viewer 
-                  ref={splineRef}
-                  url="https://prod.spline.design/hJK-KuivBGj4d8h4/scene.splinecode" 
-                  className="rounded-2xl w-full aspect-square lg:aspect-[4/3]"
+                <img
+                  src={homeHero}
+                  alt="AI Neural Network"
+                  className="rounded-2xl w-full h-auto drop-shadow-2xl"
                   style={{
-                    filter: 'drop-shadow(0 0 30px rgba(212, 175, 55, 0.5)) drop-shadow(0 0 60px rgba(212, 175, 55, 0.25))'
+                    filter: 'drop-shadow(0 0 30px rgba(212, 175, 55, 0.5)) drop-shadow(0 0 60px rgba(212, 175, 55, 0.25))',
                   }}
-                ></spline-viewer>
+                />
               </div>
             </EnhancedSection>
           </div>
