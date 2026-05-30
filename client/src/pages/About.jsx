@@ -17,37 +17,8 @@ const About = () => {
     const hideSplineLogo = () => {
       const splineViewer = splineRef.current;
       if (splineViewer) {
-        // Try to access shadow DOM
         const shadowRoot = splineViewer.shadowRoot;
         if (shadowRoot) {
-          // Find ALL possible logo/watermark elements and hide them
-          const allElements = shadowRoot.querySelectorAll('*');
-          allElements.forEach(el => {
-            const text = el.textContent?.toLowerCase() || '';
-            // Safely get className - some elements might not have it as a string
-            let classList = '';
-            try {
-              classList = (el.className || '').toString().toLowerCase();
-            } catch (e) {
-              classList = '';
-            }
-            const href = (el.getAttribute?.('href') || '').toLowerCase();
-            
-            if (
-              text.includes('spline') || 
-              classList.includes('logo') || 
-              classList.includes('watermark') ||
-              href.includes('spline') ||
-              el.tagName === 'A'
-            ) {
-              el.style.display = 'none';
-              el.style.opacity = '0';
-              el.style.visibility = 'hidden';
-              el.style.pointerEvents = 'none';
-            }
-          });
-          
-          // Also try injecting a style tag into shadow DOM
           const existingStyle = shadowRoot.querySelector('style#hide-spline-logo');
           if (!existingStyle) {
             const style = document.createElement('style');
@@ -69,10 +40,14 @@ const About = () => {
       }
     };
 
-    // Run initially and then more frequently
+    // Run only a few times
     hideSplineLogo();
-    const interval = setInterval(hideSplineLogo, 100);
-    return () => clearInterval(interval);
+    const timeout1 = setTimeout(hideSplineLogo, 500);
+    const timeout2 = setTimeout(hideSplineLogo, 1500);
+    return () => {
+      clearTimeout(timeout1);
+      clearTimeout(timeout2);
+    };
   }, []);
 
   const expertise = [
