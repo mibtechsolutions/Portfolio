@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useEffect, useRef } from 'framer-motion';
 import { Target, Eye, Award, Shield, Users, Zap, CheckCircle, TrendingUp, Code, Cpu, Globe, Database, Brain, Bot, BarChart3, Clock } from 'lucide-react';
 import {
   EnhancedSection,
@@ -7,10 +7,32 @@ import {
 } from '../components/animations';
 import { AnimatedBackground, GradientBlob, GridLines } from '../components/AnimatedBackground';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import homeHero from '../assets/home-hero.png';
 import ceoImg from '../assets/ceo.png';
 
 const About = () => {
+  const splineRef = useRef(null);
+
+  useEffect(() => {
+    const hideSplineLogo = () => {
+      const splineViewer = splineRef.current;
+      if (splineViewer) {
+        // Try to access shadow DOM
+        const shadowRoot = splineViewer.shadowRoot;
+        if (shadowRoot) {
+          const logo = shadowRoot.querySelector('[class*="logo"], [class*="watermark"], a[href*="spline"]');
+          if (logo) {
+            logo.style.display = 'none';
+          }
+        }
+      }
+    };
+
+    // Run initially and then periodically
+    hideSplineLogo();
+    const interval = setInterval(hideSplineLogo, 500);
+    return () => clearInterval(interval);
+  }, []);
+
   const expertise = [
     { icon: Code, title: 'Custom Development', desc: 'Bespoke solutions tailored to your needs' },
     { icon: Brain, title: 'AI & ML', desc: 'Cutting-edge artificial intelligence and machine learning' },
@@ -74,7 +96,14 @@ const About = () => {
             <EnhancedSection direction="left" className="relative" delay={0.3}>
               <div className="absolute -inset-10 bg-gold-500/20 blur-3xl rounded-full"></div>
               <div className="relative">
-                <spline-viewer url="https://prod.spline.design/hJK-KuivBGj4d8h4/scene.splinecode" className="rounded-2xl w-full h-auto" style={{filter: 'drop-shadow(0 0 30px rgba(212, 175, 55, 0.5)) drop-shadow(0 0 60px rgba(212, 175, 55, 0.25))'}}></spline-viewer>
+                <spline-viewer 
+                  ref={splineRef}
+                  url="https://prod.spline.design/hJK-KuivBGj4d8h4/scene.splinecode" 
+                  className="rounded-2xl w-full min-h-[500px] lg:min-h-[600px]"
+                  style={{
+                    filter: 'drop-shadow(0 0 30px rgba(212, 175, 55, 0.5)) drop-shadow(0 0 60px rgba(212, 175, 55, 0.25))'
+                  }}
+                ></spline-viewer>
               </div>
             </EnhancedSection>
           </div>

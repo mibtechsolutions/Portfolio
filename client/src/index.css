@@ -19,6 +19,16 @@ body {
   overflow-x: hidden;
 }
 
+/* Hide Spline watermark */
+spline-viewer::part(logo) {
+  display: none !important;
+}
+
+/* Or alternative approach targeting the shadow DOM */
+spline-viewer {
+  --spline-logo-display: none;
+}
+
 @layer utilities {
   .glassmorphism {
     background: rgba(20, 20, 20, 0.6);
