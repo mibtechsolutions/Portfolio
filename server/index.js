@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const { Resend } = require('resend');
+const nodemailer = require('nodemailer');
 const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
@@ -22,7 +22,14 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   }
 });
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Create Gmail transporter
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
+});
 
 app.get('/', (req, res) => {
   res.json({
@@ -42,7 +49,7 @@ app.post('/api/contact', async (req, res) => {
     
     console.log('📨 Processing contact form submission:', { name, email, phone, company });
     console.log('🔑 Environment Variables Check:');
-    console.log('  - RESEND_API_KEY:', process.env.RESEND_API_KEY ? '✓ Set (length: ' + process.env.RESEND_API_KEY.length + ')' : '✗ NOT SET');
+    console.log('  - EMAIL_USER:', process.env.EMAIL_USER ? '✓ Set' : '✗ NOT SET');
     console.log('  - RECIPIENT_EMAIL:', process.env.RECIPIENT_EMAIL ? '✓ Set' : '✗ NOT SET');
     
     let data = null;
@@ -68,14 +75,6 @@ app.post('/api/contact', async (req, res) => {
 
       if (supabaseResult.error) {
         console.error('❌ Supabase Error:', supabaseResult.error);
-        console.error('   💡 Make sure your table has these columns:');
-        console.error('      - id (UUID, primary key)');
-        console.error('      - name (VARCHAR/TEXT)');
-        console.error('      - email (VARCHAR/TEXT)');
-        console.error('      - phone (VARCHAR/TEXT, optional)');
-        console.error('      - company (VARCHAR/TEXT, optional)');
-        console.error('      - message (TEXT)');
-        console.error('      - created_at (TIMESTAMP)');
       } else {
         data = supabaseResult.data;
         console.log('✅ Saved to Supabase successfully:', data);
@@ -85,13 +84,13 @@ app.post('/api/contact', async (req, res) => {
     }
     
     try {
-      console.log('📧 Trying to send email with Resend...');
-      console.log('  - From:', 'onboarding@resend.dev');
+      console.log('📧 Trying to send email via Gmail...');
+      console.log('  - From:', process.env.EMAIL_USER);
       console.log('  - To:', process.env.RECIPIENT_EMAIL);
       
-      const { data: resendData, error: resendError } = await resend.emails.send({
-        from: 'onboarding@resend.dev',
-        to: [process.env.RECIPIENT_EMAIL],
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: process.env.RECIPIENT_EMAIL,
         subject: `New Contact Form Submission from ${name}`,
         html: `
           <h2 style="color: #D4AF37;">New Contact Form Submission</h2>
@@ -104,14 +103,11 @@ app.post('/api/contact', async (req, res) => {
             <p style="background: #2a2a2a; padding: 15px; border-radius: 4px;">${message}</p>
           </div>
         `
-      });
-
-      if (resendError) {
-        throw resendError;
-      }
+      };
       
+      await transporter.sendMail(mailOptions);
       emailSent = true;
-      console.log('✅ Email sent successfully! Resend ID:', resendData?.id);
+      console.log('✅ Email sent successfully via Gmail!');
     } catch (emailErr) {
       console.error('❌ Failed to send email:', emailErr);
       console.error('   Error details:', emailErr.message);
