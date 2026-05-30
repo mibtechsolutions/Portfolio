@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useEffect, useRef } from 'framer-motion';
 import { Target, Eye, Award, Shield, Users, Zap, CheckCircle, TrendingUp, Code, Cpu, Globe, Database, Brain, Bot, BarChart3, Clock } from 'lucide-react';
 import {
   EnhancedSection,
@@ -7,10 +7,43 @@ import {
 } from '../components/animations';
 import { AnimatedBackground, GradientBlob, GridLines } from '../components/AnimatedBackground';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import homeHero from '../assets/home-hero.png';
 import ceoImg from '../assets/ceo.png';
 
 const About = () => {
+  const splineRef = useRef(null);
+
+  useEffect(() => {
+    const hideLogo = () => {
+      const splineViewer = splineRef.current;
+      if (splineViewer && splineViewer.shadowRoot) {
+        const existingStyle = splineViewer.shadowRoot.querySelector('#hide-spline-logo');
+        if (!existingStyle) {
+          const style = document.createElement('style');
+          style.id = 'hide-spline-logo';
+          style.textContent = `
+            a, [class*="logo"], [class*="watermark"], [href*="spline"] {
+              display: none !important;
+              opacity: 0 !important;
+              visibility: hidden !important;
+              pointer-events: none !important;
+            }
+          `;
+          splineViewer.shadowRoot.appendChild(style);
+        }
+      }
+    };
+
+    // Check a few times with delay
+    const t1 = setTimeout(hideLogo, 500);
+    const t2 = setTimeout(hideLogo, 1500);
+    const t3 = setTimeout(hideLogo, 3000);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
+  }, []);
 
   const expertise = [
     { icon: Code, title: 'Custom Development', desc: 'Bespoke solutions tailored to your needs' },
@@ -76,6 +109,7 @@ const About = () => {
               <div className="absolute -inset-10 bg-gold-500/20 blur-3xl rounded-full"></div>
               <div className="relative">
                 <spline-viewer 
+                  ref={splineRef}
                   url="https://prod.spline.design/hJK-KuivBGj4d8h4/scene.splinecode" 
                   className="rounded-2xl w-full aspect-square lg:aspect-[4/3]"
                   style={{
