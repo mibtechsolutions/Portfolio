@@ -13,7 +13,9 @@ import {
 import { AnimatedBackground, GradientBlob, GridLines } from '../components/AnimatedBackground';
 import homeHero from '../assets/home-hero.png';
 
-const API_BASE_URL = 'http://localhost:3001/api';
+const API_BASE_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:3001/api' 
+    : 'https://mib-tech-backend.onrender.com/api';
 
 const Home = () => {
   const [testimonials, setTestimonials] = useState([]);
