@@ -24,11 +24,20 @@ const About = () => {
           const allElements = shadowRoot.querySelectorAll('*');
           allElements.forEach(el => {
             const text = el.textContent?.toLowerCase() || '';
-            const classList = el.className?.toLowerCase() || '';
+            // Safely get className - some elements might not have it as a string
+            let classList = '';
+            try {
+              classList = (el.className || '').toString().toLowerCase();
+            } catch (e) {
+              classList = '';
+            }
+            const href = (el.getAttribute?.('href') || '').toLowerCase();
+            
             if (
               text.includes('spline') || 
               classList.includes('logo') || 
               classList.includes('watermark') ||
+              href.includes('spline') ||
               el.tagName === 'A'
             ) {
               el.style.display = 'none';
