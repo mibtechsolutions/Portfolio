@@ -20,17 +20,49 @@ const About = () => {
         // Try to access shadow DOM
         const shadowRoot = splineViewer.shadowRoot;
         if (shadowRoot) {
-          const logo = shadowRoot.querySelector('[class*="logo"], [class*="watermark"], a[href*="spline"]');
-          if (logo) {
-            logo.style.display = 'none';
+          // Find ALL possible logo/watermark elements and hide them
+          const allElements = shadowRoot.querySelectorAll('*');
+          allElements.forEach(el => {
+            const text = el.textContent?.toLowerCase() || '';
+            const classList = el.className?.toLowerCase() || '';
+            if (
+              text.includes('spline') || 
+              classList.includes('logo') || 
+              classList.includes('watermark') ||
+              el.tagName === 'A'
+            ) {
+              el.style.display = 'none';
+              el.style.opacity = '0';
+              el.style.visibility = 'hidden';
+              el.style.pointerEvents = 'none';
+            }
+          });
+          
+          // Also try injecting a style tag into shadow DOM
+          const existingStyle = shadowRoot.querySelector('style#hide-spline-logo');
+          if (!existingStyle) {
+            const style = document.createElement('style');
+            style.id = 'hide-spline-logo';
+            style.textContent = `
+              *, *::before, *::after {
+                --spline-logo-display: none !important;
+              }
+              a, [class*="logo"], [class*="watermark"], [href*="spline"] {
+                display: none !important;
+                opacity: 0 !important;
+                visibility: hidden !important;
+                pointer-events: none !important;
+              }
+            `;
+            shadowRoot.appendChild(style);
           }
         }
       }
     };
 
-    // Run initially and then periodically
+    // Run initially and then more frequently
     hideSplineLogo();
-    const interval = setInterval(hideSplineLogo, 500);
+    const interval = setInterval(hideSplineLogo, 100);
     return () => clearInterval(interval);
   }, []);
 
@@ -100,7 +132,7 @@ const About = () => {
                 <spline-viewer 
                   ref={splineRef}
                   url="https://prod.spline.design/hJK-KuivBGj4d8h4/scene.splinecode" 
-                  className="rounded-2xl w-full min-h-[500px] lg:min-h-[600px]"
+                  className="rounded-2xl w-full aspect-square lg:aspect-[4/3]"
                   style={{
                     filter: 'drop-shadow(0 0 30px rgba(212, 175, 55, 0.5)) drop-shadow(0 0 60px rgba(212, 175, 55, 0.25))'
                   }}

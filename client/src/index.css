@@ -19,14 +19,25 @@ body {
   overflow-x: hidden;
 }
 
-/* Hide Spline watermark */
-spline-viewer::part(logo) {
-  display: none !important;
+/* Aggressively hide Spline logo/watermark */
+spline-viewer {
+  position: relative;
 }
 
-/* Or alternative approach targeting the shadow DOM */
-spline-viewer {
-  --spline-logo-display: none;
+spline-viewer::part(logo),
+spline-viewer::part(watermark) {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Also try to hide it via CSS injection in shadow DOM (as backup) */
+spline-viewer > *:last-child,
+spline-viewer a,
+spline-viewer [class*="logo"],
+spline-viewer [class*="watermark"] {
+  display: none !important;
 }
 
 @layer utilities {
