@@ -19,27 +19,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Aggressively hide Spline logo/watermark */
-spline-viewer {
-  position: relative;
-}
-
-spline-viewer::part(logo),
-spline-viewer::part(watermark) {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
-
-/* Also try to hide it via CSS injection in shadow DOM (as backup) */
-spline-viewer > *:last-child,
-spline-viewer a,
-spline-viewer [class*="logo"],
-spline-viewer [class*="watermark"] {
-  display: none !important;
-}
-
 @layer utilities {
   .glassmorphism {
     background: rgba(20, 20, 20, 0.6);
