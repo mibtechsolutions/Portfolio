@@ -60,14 +60,11 @@ const Portfolio = () => {
       const response = await fetch(`${API_BASE_URL}/projects`);
       const result = await response.json();
       
-      if (result.success) {
+      if (result.success && result.data && result.data.length > 0) {
         setProjects(result.data);
-      } else {
-        setError(result.message);
       }
     } catch (err) {
       console.error('Error fetching projects:', err);
-      setError('Failed to load projects');
     } finally {
       setLoading(false);
     }
@@ -168,28 +165,6 @@ const Portfolio = () => {
               <div className="col-span-2 flex items-center justify-center py-20">
                 <Loader2 className="w-12 h-12 text-gold-500 animate-spin" />
                 <span className="ml-4 text-xl text-gray-400">Loading projects...</span>
-              </div>
-            ) : error ? (
-              <div className="col-span-2 text-center py-20 glassmorphism rounded-xl p-12 border-gold">
-                <h3 className="text-2xl font-bold mb-4 text-red-500">Error Loading Projects</h3>
-                <p className="text-gray-400 mb-6">{error}</p>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={fetchProjects}
-                  className="px-6 py-3 bg-gold-gradient text-black font-bold rounded-lg gold-glow"
-                >
-                  Try Again
-                </motion.button>
-              </div>
-            ) : filteredProjects.length === 0 ? (
-              <div className="col-span-2 text-center py-20 glassmorphism rounded-xl p-12 border-gold">
-                <h3 className="text-2xl font-bold mb-4 text-gold-500">No Projects Yet</h3>
-                <p className="text-gray-400">
-                  {activeFilter === 'All' 
-                    ? 'Add projects to your Supabase database to see them here!' 
-                    : `No projects found in the "${activeFilter}" category.`}
-                </p>
               </div>
             ) : (
               filteredProjects.map((project, index) => (

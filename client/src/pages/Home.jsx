@@ -65,14 +65,11 @@ const Home = () => {
       const response = await fetch(`${API_BASE_URL}/testimonials`);
       const result = await response.json();
       
-      if (result.success) {
+      if (result.success && result.data && result.data.length > 0) {
         setTestimonials(result.data);
-      } else {
-        setTestimonialsError(result.message);
       }
     } catch (err) {
       console.error('Error fetching testimonials:', err);
-      setTestimonialsError('Failed to load testimonials');
     } finally {
       setLoadingTestimonials(false);
     }
@@ -322,24 +319,6 @@ const Home = () => {
               <div className="col-span-3 flex items-center justify-center py-20">
                 <Loader2 className="w-12 h-12 text-gold-500 animate-spin" />
                 <span className="ml-4 text-xl text-gray-400">Loading testimonials...</span>
-              </div>
-            ) : testimonialsError ? (
-              <div className="col-span-3 text-center py-20 glassmorphism rounded-xl p-12 border-gold">
-                <h3 className="text-2xl font-bold mb-4 text-red-500">Error Loading Testimonials</h3>
-                <p className="text-gray-400 mb-6">{testimonialsError}</p>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={fetchTestimonials}
-                  className="px-6 py-3 bg-gold-gradient text-black font-bold rounded-lg gold-glow"
-                >
-                  Try Again
-                </motion.button>
-              </div>
-            ) : testimonials.length === 0 ? (
-              <div className="col-span-3 text-center py-20 glassmorphism rounded-xl p-12 border-gold">
-                <h3 className="text-2xl font-bold mb-4 text-gold-500">No Testimonials Yet</h3>
-                <p className="text-gray-400">Add testimonials to your Supabase database to see them here!</p>
               </div>
             ) : (
               testimonials.map((testimonial, index) => (
