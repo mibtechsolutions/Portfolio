@@ -12,9 +12,39 @@ const API_BASE_URL = window.location.hostname === 'localhost'
     ? 'http://localhost:3001/api' 
     : 'https://mib-tech-backend.onrender.com/api';
 
+const SAMPLE_PROJECTS = [
+  {
+    id: 1,
+    title: "AI-Powered Customer Service Bot",
+    category: "AI Automation",
+    description: "An intelligent chatbot that handles 80% of customer queries automatically.",
+    image_url: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&h=600&fit=crop",
+    metrics: ["24/7 Availability", "80% Query Resolution"],
+    tags: ["AI", "Chatbot", "Customer Service"]
+  },
+  {
+    id: 2,
+    title: "Enterprise CRM System",
+    category: "CRM",
+    description: "Custom CRM solution for managing leads, sales, and customer relationships.",
+    image_url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+    metrics: ["500+ Users", "Sales Pipeline 2x"],
+    tags: ["CRM", "Sales", "Business"]
+  },
+  {
+    id: 3,
+    title: "WhatsApp Marketing Automation",
+    category: "WhatsApp",
+    description: "Automated WhatsApp campaigns that drive 40% higher engagement.",
+    image_url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+    metrics: ["40% Engagement", "50k+ Messages Sent"],
+    tags: ["WhatsApp", "Marketing", "Automation"]
+  }
+];
+
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState('All');
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState(SAMPLE_PROJECTS);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 

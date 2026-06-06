@@ -17,8 +17,14 @@ const API_BASE_URL = window.location.hostname === 'localhost'
     ? 'http://localhost:3001/api' 
     : 'https://mib-tech-backend.onrender.com/api';
 
+const SAMPLE_TESTIMONIALS = [
+  { id: 1, name: "John Smith", company: "TechCorp", text: "MiB Tech Solutions transformed our operations with their AI automation. Highly recommend!" },
+  { id: 2, name: "Sarah Johnson", company: "Innovate Inc.", text: "The WhatsApp automation they built has revolutionized our customer service. Thank you!" },
+  { id: 3, name: "David Lee", company: "StartupXYZ", text: "Their custom CRM has streamlined our sales process. Productivity up 300%!" }
+];
+
 const Home = () => {
-  const [testimonials, setTestimonials] = useState([]);
+  const [testimonials, setTestimonials] = useState(SAMPLE_TESTIMONIALS);
   const [loadingTestimonials, setLoadingTestimonials] = useState(true);
   const [testimonialsError, setTestimonialsError] = useState(null);
 
