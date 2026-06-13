@@ -1,4 +1,5 @@
-import { motion, useEffect, useRef } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 import { Target, Eye, Award, Shield, Users, Zap, CheckCircle, TrendingUp, Code, Cpu, Globe, Database, Brain, Bot, BarChart3, Clock } from 'lucide-react';
 import { EnhancedSection, TiltCard, MagneticButton } from '../components/animations';
 import { AnimatedBackground, GradientBlob, GridLines } from '../components/AnimatedBackground';
