@@ -92,7 +92,7 @@ const About = () => {
               <div className="absolute -inset-10 bg-gold-500/20 blur-3xl rounded-full" />
               <div className="relative aspect-square lg:aspect-[4/3] relative">
                 {/* Top Card */}
-                <motion.div initial={{ opacity:0, y:-20 }} whileInView={{ opacity:1, y:0 }} transition={{ delay:0.4, duration:0.6 }}} viewport={{ once:true }} className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full mb-4 z-20">
+                <motion.div initial={{ opacity:0, y:-20 }} whileInView={{ opacity:1, y:0 }} transition={{ delay:0.4, duration:0.6 }} viewport={{ once:true }} className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full mb-4 z-20">
                   <div className="glassmorphism border-gold rounded-xl p-4 border text-center">
                     <h3 className="text-gold-500 font-bold text-lg">AI AUTOMATION</h3>
                     <p className="text-gray-300 text-sm">Transform operations with smart AI systems</p>
